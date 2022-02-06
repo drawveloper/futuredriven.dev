@@ -36,8 +36,12 @@ export function render(opts: RenderToStringOptions) {
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png"/>
         <meta name="theme-color" content="#ffffff"/>
+        <style>{
+        `@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+html { font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}`
+        }</style>
       </head>
-      <body q:base="/">
+      <body q:base="/" class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style={{"background-image": "url('header.png');"}}>
         <Root />
         <QwikLoader debug={opts.debug} />
       </body>
