@@ -12,6 +12,7 @@
     "dev": "vite",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
+    "test": "echo 'coming soon'",
     "start": "npm run dev"
   },
   "devDependencies": {
