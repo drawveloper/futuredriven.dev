@@ -3,6 +3,9 @@ import { qwikRollup } from '@builder.io/qwik/optimizer';
 import { writeFile, mkdir } from 'fs/promises';
 import { dirname, resolve } from 'path';
 
+const isServerBuild = !!process.argv.find(a => a === 'server/build')
+console.log('Server build', isServerBuild)
+
 export default defineConfig({
   build: {
     rollupOptions: {
@@ -12,9 +15,7 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    postcss: './postcss.config.js',
-  },
+  publicDir: false,
   ssr: {
     noExternal: true,
   },
@@ -25,7 +26,12 @@ export default defineConfig({
         type: 'single',
       },
       symbolsOutput: (data) => {
+        // Skip symbols on SSR build
+        if (isServerBuild) {
+          return
+        }
         outputJSON('./server/q-symbols.json', data);
+        console.log('./server/q-symbols.json generated.')
       },
     }),
   ],

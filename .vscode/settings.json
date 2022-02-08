@@ -1,8 +1,7 @@
 {
-    "deno.enable": false,
-    "deno.lint": false,
-    "deno.unstable": false,
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-action.json": ".github/workflows/deploy.yml"
-    }
+    "deno.enable": true,
+    "deno.lint": true,
+    "deno.unstable": true,
+    "deno.importMap": "./import_map.json",
+    "deno.config": "./deno.json"
 }

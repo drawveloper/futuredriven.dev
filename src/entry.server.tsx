@@ -7,7 +7,7 @@
  */
 
 import { renderToString, RenderToStringOptions, QwikLoader } from '@builder.io/qwik/server';
-import { Root } from './root';
+import { Root } from './root.tsx';
 
 /**
  * Entry point for server-side pre-rendering.

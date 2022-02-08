@@ -12,5 +12,5 @@
     "skipLibCheck": true,
     "incremental": true
   },
-  "include": ["src", "src/declarations.d.ts"],
+  "include": ["src"]
 }
