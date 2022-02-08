@@ -16,7 +16,7 @@ import { join } from "https://deno.land/std@0.123.0/path/mod.ts";
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };
 
-const PORT = Deno.env.get("PORT") || 8080;
+const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
 const distFolderPath = join(__dirname, "..", "dist");
 const publicFolderPath = join(__dirname, "..", "public");
@@ -129,4 +129,4 @@ app.addEventListener("listen", () => {
 });
 
 // Start server
-await app.listen({ port: 8080 });
+await app.listen({ port: PORT });
