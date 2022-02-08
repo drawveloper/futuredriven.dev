@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://cdn.esm.sh/@builder.io/qwik",
+    "lib": ["dom", "dom.asynciterable", "deno.ns"]
+  }
+}
+  

@@ -12,9 +12,6 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    postcss: './postcss.config.js',
-  },
   ssr: {
     noExternal: true,
   },
@@ -24,8 +21,13 @@ export default defineConfig({
       entryStrategy: {
         type: 'single',
       },
-      symbolsOutput: (data) => {
+      symbolsOutput: (data, outputOptions) => {
+        // Skip symbols on SSR build
+        if (outputOptions && outputOptions.exports === 'named') {
+          return
+        }
         outputJSON('./server/q-symbols.json', data);
+        console.log('./server/q-symbols.json generated.')
       },
     }),
   ],
