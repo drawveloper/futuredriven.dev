@@ -108,7 +108,7 @@ router.get("/", async (context) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// Static content under /dist
+// Static content under /dist or /public
 app.use(async (context) => {
   console.log(`>>> static try /dist${context.request.url.pathname}`);
   try {
