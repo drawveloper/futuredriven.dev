@@ -18,7 +18,7 @@ export function render(opts: RenderToStringOptions) {
   return renderToString(
     <html>
       <head>
-        <title>Mesa.land — play and create online card games</title>
+        <title>futuredriven.dev — play and create online card games</title>
         <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png"/>
         <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png"/>

@@ -15,6 +15,7 @@ import { join } from "https://deno.land/std@0.123.0/path/mod.ts";
 
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };
+import { getPostsFromNotion } from "./posts.ts";
 
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
@@ -104,6 +105,16 @@ router.get("/", async (context) => {
 
   context.response.body = result.html;
 });
+
+router.get("/posts/:id", async (context) => {
+  console.log(
+    ">>> posts",
+    context.request.url.pathname,
+    context.params?.id,
+  );
+  const posts = await getPostsFromNotion(context.params?.id);
+  context.response.body = posts;
+})
 
 app.use(router.routes());
 app.use(router.allowedMethods());

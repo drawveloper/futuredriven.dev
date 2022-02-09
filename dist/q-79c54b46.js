@@ -1,4 +1,4 @@
-import{j as n,H as o,w as a,q as e,a as i,o as s}from"./q-f941dbf4.js";import{_ as t}from"./assets/index.94f8ddd6.js";var l=`/*
+import{j as n,H as o,w as r,q as e,a,o as s}from"./q-f941dbf4.js";import{_ as t}from"./assets/index.bb816837.js";var l=`/*
 ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -460,14 +460,8 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .fixed {
   position: fixed;
 }
-.absolute {
-  position: absolute;
-}
 .bottom-0 {
   bottom: 0px;
-}
-.z-10 {
-  z-index: 10;
 }
 .m-6 {
   margin: 1.5rem;
@@ -475,22 +469,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.mb-8 {
-  margin-bottom: 2rem;
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-.block {
-  display: block;
 }
 .flex {
   display: flex;
@@ -501,18 +479,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .w-full {
   width: 100%;
 }
-.-rotate-6 {
-  --tw-rotate: -6deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.appearance-none {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
 .flex-col {
   flex-direction: column;
 }
@@ -522,30 +488,8 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .items-center {
   align-items: center;
 }
-.justify-center {
-  justify-content: center;
-}
 .justify-between {
   justify-content: space-between;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-.overflow-y-hidden {
-  overflow-y: hidden;
-}
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-.rounded {
-  border-radius: 0.25rem;
-}
-.border {
-  border-width: 1px;
-}
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -554,18 +498,11 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   --tw-gradient-from: #4ade80;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(74 222 128 / 0));
 }
-.from-purple-800 {
-  --tw-gradient-from: #6b21a8;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(107 33 168 / 0));
-}
 .via-pink-500 {
   --tw-gradient-stops: var(--tw-gradient-from), #ec4899, var(--tw-gradient-to, rgb(236 72 153 / 0));
 }
 .to-purple-500 {
   --tw-gradient-to: #a855f7;
-}
-.to-green-500 {
-  --tw-gradient-to: #22c55e;
 }
 .bg-cover {
   background-size: cover;
@@ -577,35 +514,8 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   -webkit-background-clip: text;
           background-clip: text;
 }
-.p-3 {
-  padding: 0.75rem;
-}
-.p-12 {
-  padding: 3rem;
-}
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
 .pt-24 {
   padding-top: 6rem;
-}
-.pt-6 {
-  padding-top: 1.5rem;
-}
-.pb-8 {
-  padding-bottom: 2rem;
-}
-.pt-4 {
-  padding-top: 1rem;
 }
 .pt-16 {
   padding-top: 4rem;
@@ -620,14 +530,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -637,9 +539,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 }
 .leading-normal {
   line-height: 1.5;
-}
-.leading-tight {
-  line-height: 1.25;
 }
 .tracking-normal {
   letter-spacing: 0em;
@@ -651,89 +550,19 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .text-transparent {
   color: transparent;
 }
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-blue-300 {
-  --tw-text-opacity: 1;
-  color: rgb(147 197 253 / var(--tw-text-opacity));
-}
-.text-gray-700 {
-  --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity));
-}
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-.underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
 }
 .no-underline {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
 }
-.opacity-75 {
-  opacity: 0.75;
-}
-.shadow-lg {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.transition {
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-.duration-300 {
-  transition-duration: 300ms;
-}
-.duration-700 {
-  transition-duration: 700ms;
-}
-.ease-in-out {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.hover\\:rotate-6:hover {
-  --tw-rotate: 6deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.hover\\:scale-105:hover {
-  --tw-scale-x: 1.05;
-  --tw-scale-y: 1.05;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.hover\\:from-pink-500:hover {
-  --tw-gradient-from: #ec4899;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(236 72 153 / 0));
-}
-.hover\\:to-green-500:hover {
-  --tw-gradient-to: #22c55e;
-}
 .hover\\:no-underline:hover {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
 }
-.focus\\:ring:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
 @media (min-width: 768px) {
-
-  .md\\:w-4\\/5 {
-    width: 80%;
-  }
 
   .md\\:flex-row {
     flex-direction: row;
@@ -743,43 +572,15 @@ Ensure the default browser behavior of the \`hidden\` attribute.
     padding-top: 9rem;
   }
 
-  .md\\:text-left {
-    text-align: left;
-  }
-
   .md\\:text-center {
     text-align: center;
   }
-
-  .md\\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  .md\\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
 }
 @media (min-width: 1024px) {
-
-  .lg\\:items-start {
-    align-items: flex-start;
-  }
 
   .lg\\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
-@media (min-width: 1280px) {
-
-  .xl\\:w-2\\/5 {
-    width: 40%;
-  }
-
-  .xl\\:w-3\\/5 {
-    width: 60%;
-  }
-}
-`;const d=l,c=()=>n(o,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["Mesa",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:".land"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:[n("div",{class:"flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden",children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:["Play"," ",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"amazing card games"})," ","... and create your own!"]}),n("p",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",children:"The end-to-end online cardgame platform for card game designers and illustrators."}),n("form",{class:"bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4",children:[n("div",{class:"mb-4",children:[n("label",{class:"block text-blue-300 py-2 font-bold mb-2",htmlFor:"emailaddress",children:"Signup for our newsletter"}),n("input",{class:"shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out",id:"emailaddress",type:"text",placeholder:"you@somewhere.com"})]}),n("div",{class:"flex items-center justify-between pt-4",children:n("button",{class:"bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out",type:"button",children:"Sign Up"})})]})]}),n("div",{class:"w-full xl:w-3/5 p-12 overflow-hidden",children:n("a",{href:"https://github.com/gadrrio/mesa.land",children:n("div",{class:"transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6",children:[n("img",{alt:"Mesa.land Logo",width:100,src:"/Mesa-label.png",class:"absolute z-10",style:{left:"100px",top:"60px"}}),n("img",{class:"mx-auto w-full md:w-4/5",src:"macbook.svg"})]})})}),n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Mesa.land 2022"})," ","\u2014 Made in"," ",n("a",{target:"_blank",class:"underline",href:"https://gadr.rio/",children:"Rio"})," ","with \u{1F90D}"]})]})]}),n("p",{style:{"text-align":"center"}})]}),p=()=>(a(e(()=>t(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles")),i({name:"World"}),s(e(()=>t(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender")));var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:d,Root_component_onRender:c,Root_component:p});export{p as Root_component,c as Root_component_onRender,d as Root_component_withStyles};
+`;const d=l,c=()=>n(o,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["FutureDriven",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:".Dev"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 futuredriven.dev 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]}),n("p",{style:{"text-align":"center"}})]}),h=()=>(r(e(()=>t(()=>Promise.resolve().then(function(){return i}),void 0),"Root_component_withStyles")),a({name:"World"}),s(e(()=>t(()=>Promise.resolve().then(function(){return i}),void 0),"Root_component_onRender")));var i=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:d,Root_component_onRender:c,Root_component:h});export{h as Root_component,c as Root_component_onRender,d as Root_component_withStyles};
