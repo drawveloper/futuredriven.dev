@@ -9,6 +9,7 @@
 import { renderToString, RenderToStringOptions, QwikLoader } from '@builder.io/qwik/server';
 import { Root } from './root.tsx';
 import { BlogState } from './blog.ts'
+// import mock from '../test/mock-state.json' assert { type: "json" };
 
 /**
  * Entry point for server-side pre-rendering.

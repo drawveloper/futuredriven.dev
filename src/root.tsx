@@ -11,7 +11,6 @@ import styles from "./root.css";
 
 export const Root = component$((props: {state: BlogState}) => {
   withStyles$(styles);
-  console.log('>>>state in root', props.state)
   return onRender$(() => (
     <Host class="my-app">
       <div class="h-full">
@@ -32,7 +31,7 @@ export const Root = component$((props: {state: BlogState}) => {
           <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
             {(props.state.posts) && props.state.posts.map((post: any) => 
               (<a href={post.url}>
-                <div>
+                <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
                   <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
                     {post.title.plain_text}
                   </h1>
@@ -42,13 +41,11 @@ export const Root = component$((props: {state: BlogState}) => {
                 </div>
               </a>))}
               {(props.state.post) && (
-                <div>
+                <div class="w-full xl:w-3/5 p-12 overflow-hidden">
                   <h1>{props.state.post.title}</h1>
                   <div innerHTML={props.state.post.content}></div>
                 </div>)}
           </div>
-        </div>
-
         <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
           <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0">
             <a class="text-gray-500 no-underline hover:no-underline" href="#">
@@ -57,6 +54,8 @@ export const Root = component$((props: {state: BlogState}) => {
             — Made in Rio with 🤍
           </div>
         </div>
+        </div>
+
       </div>
 
       <p style={{ "text-align": "center" }}>

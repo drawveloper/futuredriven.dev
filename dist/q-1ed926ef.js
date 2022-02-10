@@ -1,4 +1,4 @@
-import{u as a,j as n,H as s,w as l,q as i,o as d}from"./q-f07abb53.js";import{_ as o}from"./assets/index.7d76af31.js";var c=`/*
+import{u as a,j as n,H as l,w as s,q as i,o as d}from"./q-f07abb53.js";import{_ as o}from"./assets/index.d1e45e05.js";var c=`/*
 ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -501,6 +501,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .justify-between {
   justify-content: space-between;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .overflow-y-hidden {
   overflow-y: hidden;
 }
@@ -526,6 +529,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
+}
+.p-12 {
+  padding: 3rem;
 }
 .pt-24 {
   padding-top: 6rem;
@@ -558,6 +564,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .font-bold {
   font-weight: 700;
 }
+.italic {
+  font-style: italic;
+}
 .leading-normal {
   line-height: 1.5;
 }
@@ -581,6 +590,10 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 .no-underline {
   -webkit-text-decoration-line: none;
@@ -637,5 +650,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   .xl\\:w-2\\/5 {
     width: 40%;
   }
+
+  .xl\\:w-3\\/5 {
+    width: 60%;
+  }
 }
-`;const h=c,m=()=>{const[e]=a();return n(s,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["Future",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"Driven"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden",children:[e.state.posts&&e.state.posts.map(t=>n("a",{href:t.url,children:n("div",{children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:t.title.plain_text}),n("p",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",children:t.preview.plain_text})]})})),e.state.post&&n("div",{children:[n("h1",{children:e.state.post.title}),n("div",{innerHTML:e.state.post.content})]})]})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Future Driven 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]}),n("p",{style:{"text-align":"center"}})]})},p=e=>(l(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles")),console.log(">>>state in root",e.state),d(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender",[e])));var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:h,Root_component_onRender:m,Root_component:p});export{p as Root_component,m as Root_component_onRender,h as Root_component_withStyles};
+`;const h=c,m=()=>{const[e]=a();return n(l,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["Future",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"Driven"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:[n("div",{class:"flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden",children:[e.state.posts&&e.state.posts.map(t=>n("a",{href:t.url,children:n("div",{class:"flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden",children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:t.title.plain_text}),n("p",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",children:t.preview.plain_text})]})})),e.state.post&&n("div",{class:"w-full xl:w-3/5 p-12 overflow-hidden",children:[n("h1",{children:e.state.post.title}),n("div",{innerHTML:e.state.post.content})]})]}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Future Driven 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]})]}),n("p",{style:{"text-align":"center"}})]})},p=e=>(s(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles")),d(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender",[e])));var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:h,Root_component_onRender:m,Root_component:p});export{p as Root_component,m as Root_component_onRender,h as Root_component_withStyles};
