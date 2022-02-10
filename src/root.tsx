@@ -28,10 +28,10 @@ export const Root = component$((props: {state: BlogState}) => {
         </div>
 
         <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
-          <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-            {(props.state.posts) && props.state.posts.map((post: any) => 
+          <div class="flex flex-col w-3/5 justify-center lg:items-start overflow-y-hidden">
+            {!props.state.post && props.state.posts && props.state.posts.map((post: any) => 
               (<a href={post.url}>
-                <div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
+                <div class="flex flex-col w-full justify-center lg:items-start overflow-y-hidden">
                   <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
                     {post.title.plain_text}
                   </h1>
@@ -41,19 +41,19 @@ export const Root = component$((props: {state: BlogState}) => {
                 </div>
               </a>))}
               {(props.state.post) && (
-                <div class="w-full xl:w-3/5 p-12 overflow-hidden">
+                <div class="w-full p-12 overflow-hidden">
                   <h1>{props.state.post.title}</h1>
                   <div innerHTML={props.state.post.content}></div>
                 </div>)}
           </div>
-        <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
-          <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0">
-            <a class="text-gray-500 no-underline hover:no-underline" href="#">
-              &copy; Future Driven 2022
-            </a>{" "}
-            — Made in Rio with 🤍
+          <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
+            <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0">
+              <a class="text-gray-500 no-underline hover:no-underline" href="#">
+                &copy; Future Driven 2022
+              </a>{" "}
+              — Made in Rio with 🤍
+            </div>
           </div>
-        </div>
         </div>
 
       </div>

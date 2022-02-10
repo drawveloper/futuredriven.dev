@@ -1,18 +1,17 @@
 import {
   Application,
+  Context,
   HttpError,
   Router,
   Status,
-  httpErrors
-} from "oak";
-import {
+  httpErrors,
   bold,
   cyan,
   green,
   red,
-} from "colors";
-import { join } from "path";
-import { Marked } from "markdown"
+  join,
+  Marked,
+} from "../deps.ts";
 
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };
@@ -83,31 +82,7 @@ app.use(async (context, next) => {
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-// Create an oak Router
-const router = new Router();
-
-router.get("/", async (context) => {
-  console.log(
-    ">>> qwik",
-    context.request.url.pathname,
-  );
-
-  const start = Date.now();
-
-  const result = await render({
-    symbols,
-    url: context.request.url,
-    debug: false,
-  }, {});
-
-  const ms = Date.now() - start;
-  context.response.headers.set("X-Render-Time", `${ms}ms`);
-  console.log(`>>> render complete in ${ms}ms`)
-
-  context.response.body = result.html;
-});
-
-router.get("/posts/", async (context) => {
+async function renderPosts(context: Context) {
   console.log(
     ">>> posts",
     context.request.url.pathname,
@@ -129,7 +104,12 @@ router.get("/posts/", async (context) => {
   console.log(`>>> render complete in ${ms}ms`)
 
   context.response.body = result.html;
-})
+}
+
+// Create an oak Router
+const router = new Router();
+
+router.get("/", renderPosts);
 
 router.get("/posts/:id", async (context) => {
   console.log(

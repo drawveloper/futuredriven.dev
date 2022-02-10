@@ -1,7 +1,4 @@
-import "dotenv";
-import { Client } from "notion_sdk";
-import { chain, pick } from "https://deno.land/x/ramda@v0.27.2/mod.ts";
-import { NotionBlocksMarkdownParser } from "blocks-markdown-parser";
+import { chain, Client, NotionBlocksMarkdownParser, pick } from "../deps.ts";
 
 // Initializing a client
 const auth = Deno.env.get("NOTION_TOKEN") || "";
@@ -30,7 +27,7 @@ export async function getPosts() {
       base.title = post.properties.Name.title[0];
       base.preview = post.properties.Preview.rich_text[0];
     }
-    base.url = base.url.replace('https://www.notion.so', '/posts')
+    base.url = base.url.replace("https://www.notion.so", "/posts");
     return base;
   }, results);
 }
