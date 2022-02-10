@@ -1,6 +1,7 @@
 {
   "$schema": "https://deno.land/x/denon/schema.json",
   "scripts": {
+    "dev": "npm run build && deno run --import-map=import_map.json --config ./deno.json --allow-net --allow-read --allow-env --unstable --no-check server/server.ts",
     "start": "deno run --import-map=import_map.json --config ./deno.json --allow-net --allow-read --allow-env --unstable --no-check server/server.ts",
     "posts": "deno run --import-map=import_map.json --config ./deno.json --allow-net --allow-read --allow-env --unstable --no-check server/posts.ts"
   }

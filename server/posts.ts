@@ -27,9 +27,10 @@ export async function getPosts() {
       "url",
     ], post);
     if (post.properties) {
-      base.title = post.properties.Name.title;
-      base.preview = post.properties.Preview.rich_text;
+      base.title = post.properties.Name.title[0];
+      base.preview = post.properties.Preview.rich_text[0];
     }
+    base.url = base.url.replace('https://www.notion.so', '/posts')
     return base;
   }, results);
 }

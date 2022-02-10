@@ -10,6 +10,7 @@
     "path": "https://deno.land/std@0.123.0/path/mod.ts",
     "notion_sdk": "https://deno.land/x/notion_sdk/src/mod.ts",
     "dotenv": "https://deno.land/x/dotenv/load.ts",
-    "blocks-markdown-parser": "https://cdn.esm.sh/@notion-stuff/blocks-markdown-parser@5.1.0"
+    "blocks-markdown-parser": "https://cdn.esm.sh/@notion-stuff/blocks-markdown-parser@5.1.0",
+    "markdown": "https://deno.land/x/markdown@v2.0.0/mod.ts"
   }
 }

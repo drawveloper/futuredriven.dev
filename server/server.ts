@@ -12,10 +12,11 @@ import {
   red,
 } from "colors";
 import { join } from "path";
+import { Marked } from "markdown"
 
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };
-import { getPostsFromNotion } from "./posts.ts";
+import { getPosts, getPostMarkdownById } from "./posts.ts";
 
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
@@ -97,7 +98,7 @@ router.get("/", async (context) => {
     symbols,
     url: context.request.url,
     debug: false,
-  });
+  }, {});
 
   const ms = Date.now() - start;
   context.response.headers.set("X-Render-Time", `${ms}ms`);
@@ -106,14 +107,57 @@ router.get("/", async (context) => {
   context.response.body = result.html;
 });
 
-router.get("/posts/:id", async (context) => {
+router.get("/posts/", async (context) => {
   console.log(
     ">>> posts",
     context.request.url.pathname,
+  );
+  let start = Date.now();
+  const posts = await getPosts();
+  let ms = Date.now() - start;
+  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
+  console.log(`>>> fetch complete in ${ms}ms`)
+
+  start = Date.now();
+  const result = await render({
+    symbols,
+    url: context.request.url,
+    debug: false,
+  }, {posts});
+  ms = Date.now() - start;
+  context.response.headers.set("X-Render-Time", `${ms}ms`);
+  console.log(`>>> render complete in ${ms}ms`)
+
+  context.response.body = result.html;
+})
+
+router.get("/posts/:id", async (context) => {
+  console.log(
+    ">>> post id",
+    context.request.url.pathname,
     context.params?.id,
   );
-  const posts = await getPostsFromNotion(context.params?.id);
-  context.response.body = posts;
+
+  const idAfterDash = context.params?.id.split('-').pop() as string
+
+  let start = Date.now();
+  const postMd = await getPostMarkdownById(idAfterDash);
+  let ms = Date.now() - start;
+  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
+  console.log(`>>> fetch complete in ${ms}ms`)
+
+  start = Date.now();
+  const post = Marked.parse(postMd).content
+  const result = await render({
+    symbols,
+    url: context.request.url,
+    debug: false,
+  }, {post: {title: context.params.id}});
+  ms = Date.now() - start;
+  context.response.headers.set("X-Render-Time", `${ms}ms`);
+  console.log(`>>> render complete in ${ms}ms`)
+
+  context.response.body = result.html.replace('$POST$', post);
 })
 
 app.use(router.routes());

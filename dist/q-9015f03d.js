@@ -1,4 +1,4 @@
-import{j as n,H as o,w as r,q as e,a,o as s}from"./q-f941dbf4.js";import{_ as t}from"./assets/index.bb816837.js";var l=`/*
+import{u as a,j as n,H as s,w as l,q as i,o as d}from"./q-f07abb53.js";import{_ as o}from"./assets/index.b703ba0d.js";var c=`/*
 ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -470,6 +470,13 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   margin-left: auto;
   margin-right: auto;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .flex {
   display: flex;
 }
@@ -488,8 +495,14 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .items-center {
   align-items: center;
 }
+.justify-center {
+  justify-content: center;
+}
 .justify-between {
   justify-content: space-between;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -530,6 +543,14 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   font-size: 1.5rem;
   line-height: 2rem;
 }
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -539,6 +560,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 }
 .leading-normal {
   line-height: 1.5;
+}
+.leading-tight {
+  line-height: 1.25;
 }
 .tracking-normal {
   letter-spacing: 0em;
@@ -550,6 +574,10 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .text-transparent {
   color: transparent;
 }
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -557,6 +585,9 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .no-underline {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
+}
+.opacity-75 {
+  opacity: 0.75;
 }
 .hover\\:no-underline:hover {
   -webkit-text-decoration-line: none;
@@ -572,15 +603,39 @@ Ensure the default browser behavior of the \`hidden\` attribute.
     padding-top: 9rem;
   }
 
+  .md\\:text-left {
+    text-align: left;
+  }
+
   .md\\:text-center {
     text-align: center;
   }
+
+  .md\\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 @media (min-width: 1024px) {
+
+  .lg\\:items-start {
+    align-items: flex-start;
+  }
 
   .lg\\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
-`;const d=l,c=()=>n(o,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["FutureDriven",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:".Dev"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 futuredriven.dev 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]}),n("p",{style:{"text-align":"center"}})]}),h=()=>(r(e(()=>t(()=>Promise.resolve().then(function(){return i}),void 0),"Root_component_withStyles")),a({name:"World"}),s(e(()=>t(()=>Promise.resolve().then(function(){return i}),void 0),"Root_component_onRender")));var i=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:d,Root_component_onRender:c,Root_component:h});export{h as Root_component,c as Root_component_onRender,d as Root_component_withStyles};
+@media (min-width: 1280px) {
+
+  .xl\\:w-2\\/5 {
+    width: 40%;
+  }
+}
+`;const h=c,m=()=>{const[e]=a();return n(s,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["Future",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"Driven"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden",children:[e.state.posts&&e.state.posts.map(t=>n("a",{href:t.url,children:n("div",{children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:t.title.plain_text}),n("p",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",children:t.preview})]})})),e.state.post&&n("div",{children:"$POST$"})]})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Future Driven 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]}),n("p",{style:{"text-align":"center"}})]})},p=e=>(l(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles")),console.log(">>>state in root",e.state),d(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender",[e])));var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:h,Root_component_onRender:m,Root_component:p});export{p as Root_component,m as Root_component_onRender,h as Root_component_withStyles};

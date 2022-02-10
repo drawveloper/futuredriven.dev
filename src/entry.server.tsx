@@ -8,17 +8,18 @@
 
 import { renderToString, RenderToStringOptions, QwikLoader } from '@builder.io/qwik/server';
 import { Root } from './root.tsx';
+import { BlogState } from './blog.ts'
 
 /**
  * Entry point for server-side pre-rendering.
  *
  * @returns a promise when all of the rendering is completed.
  */
-export function render(opts: RenderToStringOptions, posts: any) {
+export function render(opts: RenderToStringOptions, state: BlogState) {
   return renderToString(
     <html>
       <head>
-        <title>futuredriven.dev — play and create online card games</title>
+        <title>Future Driven</title>
         <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png"/>
         <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png"/>
@@ -41,9 +42,9 @@ export function render(opts: RenderToStringOptions, posts: any) {
 html { font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}`
         }</style>
       </head>
-      <body q:base="/" class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style={{"background-image": "url('header.png');"}}>
-        <Root />
-        <QwikLoader debug={opts.debug} />
+      <body q:base="/" class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style={{"background-image": "url('/header.png');"}}>
+        <Root state={state}/>
+        <QwikLoader debug={opts.debug} events={undefined} />
       </body>
     </html>,
     opts
