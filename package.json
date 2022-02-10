@@ -1,7 +1,7 @@
 {
   "name": "futuredriven.dev",
   "version": "0.0.1",
-  "description": "Blank starter app",
+  "description": "Landing pages and blog for Future Driven.",
   "scripts": {
     "build": "npm run build.server && npm run build.client",
     "build.client": "vite build",
@@ -11,8 +11,7 @@
     "fmt.check": "prettier --check .",
     "serve": "denon start",
     "start": "npm run dev",
-    "test": "echo 'soon...'",
-    "postinstall": "deno run --allow-read --allow-write HACK__patch_vite.ts"
+    "test": "echo 'soon...'"
   },
   "devDependencies": {
     "@builder.io/qwik": "0.0.16-10",

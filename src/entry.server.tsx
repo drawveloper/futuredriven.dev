@@ -14,7 +14,7 @@ import { Root } from './root.tsx';
  *
  * @returns a promise when all of the rendering is completed.
  */
-export function render(opts: RenderToStringOptions) {
+export function render(opts: RenderToStringOptions, posts: any) {
   return renderToString(
     <html>
       <head>
