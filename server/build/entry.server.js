@@ -11120,13 +11120,20 @@ const Root_component_onRender = () => {
                       }),
                       /* @__PURE__ */ jsx("p", {
                         class: "leading-normal text-base md:text-2xl mb-8 text-center md:text-left",
-                        children: post.preview
+                        children: post.preview.plain_text
                       })
                     ]
                   })
                 })),
                 props.state.post && /* @__PURE__ */ jsx("div", {
-                  children: "$POST$"
+                  children: [
+                    /* @__PURE__ */ jsx("h1", {
+                      children: props.state.post.title
+                    }),
+                    /* @__PURE__ */ jsx("div", {
+                      innerHTML: props.state.post.content
+                    })
+                  ]
                 })
               ]
             })

@@ -35,7 +35,7 @@ export async function getPosts() {
   }, results);
 }
 
-export async function getPostMarkdownById(pageId: string) {
+export async function getPostById(pageId: string) {
   const { results } = await notion.blocks.children.list({ block_id: pageId });
   const parser = NotionBlocksMarkdownParser.getInstance();
   return parser.parse(results);

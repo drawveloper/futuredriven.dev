@@ -37,12 +37,15 @@ export const Root = component$((props: {state: BlogState}) => {
                     {post.title.plain_text}
                   </h1>
                   <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-                    {post.preview}
+                    {post.preview.plain_text}
                   </p>
                 </div>
               </a>))}
               {(props.state.post) && (
-                  <div>$POST$</div>)}
+                <div>
+                  <h1>{props.state.post.title}</h1>
+                  <div innerHTML={props.state.post.content}></div>
+                </div>)}
           </div>
         </div>
 

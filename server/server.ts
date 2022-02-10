@@ -16,7 +16,7 @@ import { Marked } from "markdown"
 
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };
-import { getPosts, getPostMarkdownById } from "./posts.ts";
+import { getPosts, getPostById } from "./posts.ts";
 
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
@@ -141,23 +141,26 @@ router.get("/posts/:id", async (context) => {
   const idAfterDash = context.params?.id.split('-').pop() as string
 
   let start = Date.now();
-  const postMd = await getPostMarkdownById(idAfterDash);
+  const [posts, postMd] = await Promise.all([getPosts(), getPostById(idAfterDash)]);
   let ms = Date.now() - start;
   context.response.headers.set("X-Fetch-Time", `${ms}ms`);
   console.log(`>>> fetch complete in ${ms}ms`)
 
   start = Date.now();
-  const post = Marked.parse(postMd).content
+  const post = {
+    title: context.params?.id,
+    content: Marked.parse(postMd).content,
+  }
   const result = await render({
     symbols,
     url: context.request.url,
     debug: false,
-  }, {post: {title: context.params.id}});
+  }, {posts, post});
   ms = Date.now() - start;
   context.response.headers.set("X-Render-Time", `${ms}ms`);
   console.log(`>>> render complete in ${ms}ms`)
 
-  context.response.body = result.html.replace('$POST$', post);
+  context.response.body = result.html;
 })
 
 app.use(router.routes());
