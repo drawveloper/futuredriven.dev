@@ -4,14 +4,14 @@ import {
   Router,
   Status,
   httpErrors
-} from "https://deno.land/x/oak/mod.ts";
+} from "oak";
 import {
   bold,
   cyan,
   green,
   red,
-} from "https://deno.land/std@0.122.0/fmt/colors.ts";
-import { join } from "https://deno.land/std@0.123.0/path/mod.ts";
+} from "colors";
+import { join } from "path";
 
 import { render } from "./build/entry.server.js";
 import symbols from "./q-symbols.json" assert { type: "json" };

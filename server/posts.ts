@@ -1,18 +1,40 @@
-const POSTS_QUERY = {"collection":{"id":"0f3583b0-e168-4fe5-b970-c226716357ae","spaceId":"fdc08086-bbd9-4455-9bb8-79e96b88cdf3"},"collectionView":{"id":"d97e0aa2-9c62-4690-a4c7-c7eca463c75e","spaceId":"fdc08086-bbd9-4455-9bb8-79e96b88cdf3"},"loader":{"type":"reducer","reducers":{"collection_group_results":{"type":"results","limit":50},"table:uncategorized:title:count":{"type":"aggregation","aggregation":{"property":"title","aggregator":"count"}}},"searchQuery":"","userTimeZone":"America/Sao_Paulo"}}
+import "dotenv";
+import { Client } from "notion_sdk";
+import { chain, pick, reduce } from "https://deno.land/x/ramda@v0.27.2/mod.ts";
+import { NotionBlocksMarkdownParser } from "blocks-markdown-parser";
 
-export async function getPostsFromNotion (id: string | undefined) {
-    const notionResponse = await fetch("https://fluorescent-hippodraco-75f.notion.site/api/v3/queryCollection", {
-      body: JSON.stringify(POSTS_QUERY),
-      headers: {
-        Accept: "application/x-ndjson",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Content-Type": "application/json",
-        "Notion-Client-Version": "23.10.16.50",
-        "User-Agent": "deno"
-      },
-      method: "POST"
-    })
-    const notionJson = await notionResponse.json()
-    console.log(notionJson)
-    return notionJson
+// Initializing a client
+const auth = Deno.env.get("NOTION_TOKEN") || "";
+if (auth == "") {
+  throw new Error ('NOTION_TOKEN env var is required.');
 }
+
+const databaseId = Deno.env.get("NOTION_POSTS_DB") || "";
+if (databaseId == "") {
+  throw new Error ('NOTION_POSTS_DB env var is required.');
+}
+
+const notion = new Client({ auth })
+
+export async function getPosts () {
+  const {results} = await notion.databases.query({database_id: databaseId})
+  console.log(results)
+  const parsePost = (post: any) => {
+    const base = pick(['id', 'cover', 'created_time', 'last_edited_time', 'url'], post)
+    base.title = post.properties.Name.title
+    base.preview = post.properties.Preview.rich_text
+    return base
+  }
+  const resultsParsed = chain(parsePost, results)
+  console.log(resultsParsed)
+}
+
+export async function getPostById (pageId: string) {
+  const {results} = await notion.blocks.children.list({block_id: pageId})
+  console.log(results)
+  const parser = NotionBlocksMarkdownParser.getInstance()
+  const markdown = parser.parse(results)
+  console.log(markdown)
+}
+
+await getPostById("51fe3c11-9d29-4f7d-9d9a-e321986c42c0")
