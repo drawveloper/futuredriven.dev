@@ -10,7 +10,6 @@ import {
   green,
   red,
   join,
-  Marked,
 } from "../deps.ts";
 
 import { render } from "./build/entry.server.js";
@@ -121,7 +120,7 @@ router.get("/posts/:id", async (context) => {
   const idAfterDash = context.params?.id.split('-').pop() as string
 
   let start = Date.now();
-  const [posts, postMd] = await Promise.all([getPosts(), getPostById(idAfterDash)]);
+  const [posts, content] = await Promise.all([getPosts(), getPostById(idAfterDash)]);
   let ms = Date.now() - start;
   context.response.headers.set("X-Fetch-Time", `${ms}ms`);
   console.log(`>>> fetch complete in ${ms}ms`)
@@ -129,7 +128,7 @@ router.get("/posts/:id", async (context) => {
   start = Date.now();
   const post = {
     title: context.params?.id,
-    content: Marked.parse(postMd).content,
+    content,
   }
   const result = await render({
     symbols,

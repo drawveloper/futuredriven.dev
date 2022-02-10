@@ -1,4 +1,4 @@
-import { chain, Client, NotionBlocksMarkdownParser, pick } from "../deps.ts";
+import { chain, Client, NotionBlocksMarkdownParser, pick, Marked } from "../deps.ts";
 
 // Initializing a client
 const auth = Deno.env.get("NOTION_TOKEN") || "";
@@ -25,8 +25,12 @@ export async function getPosts() {
     ], post);
     if (post.properties) {
       base.title = post.properties.Name.title[0];
-      base.preview = post.properties.Preview.rich_text[0];
     }
+    console.log(post.properties.Preview)
+    const parser = NotionBlocksMarkdownParser.getInstance();
+    const parsedPreview = parser.parseRichTexts(post.properties.Preview.rich_text)
+    console.log('parsedPreview', parsedPreview)
+    base.preview = Marked.parse(parsedPreview).content
     base.url = base.url.replace("https://www.notion.so", "/posts");
     return base;
   }, results);
@@ -35,7 +39,8 @@ export async function getPosts() {
 export async function getPostById(pageId: string) {
   const { results } = await notion.blocks.children.list({ block_id: pageId });
   const parser = NotionBlocksMarkdownParser.getInstance();
-  return parser.parse(results);
+  const md = parser.parse(results);
+  return Marked.parse(md).content;
 }
 
 //await getPostById("51fe3c11-9d29-4f7d-9d9a-e321986c42c0")

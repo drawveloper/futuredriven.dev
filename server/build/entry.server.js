@@ -11120,9 +11120,9 @@ const Root_component_onRender = () => {
                           class: "my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",
                           children: post.title.plain_text
                         }),
-                        /* @__PURE__ */ jsx("p", {
+                        /* @__PURE__ */ jsx("div", {
                           class: "leading-normal text-base md:text-2xl mb-8 text-center md:text-left",
-                          children: post.preview.plain_text
+                          innerHTML: post.preview
                         })
                       ]
                     })

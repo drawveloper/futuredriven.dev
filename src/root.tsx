@@ -35,9 +35,9 @@ export const Root = component$((props: {state: BlogState}) => {
                   <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
                     {post.title.plain_text}
                   </h1>
-                  <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-                    {post.preview.plain_text}
-                  </p>
+                  <div class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left"
+                    innerHTML={post.preview}>
+                  </div>
                 </div>
               </a>))}
               {(props.state.post) && (
