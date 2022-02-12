@@ -77,20 +77,10 @@ app.use(async (context, next) => {
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-// // Handle vite ping on extracted src/routes (crazy)
-// app.use(async (context, next) => {
-//   if (context.request.url.pathname.endsWith('/__vite_ping')){
-//     console.log('vite ping for', context.request.url.pathname)
-//     context.response.status = 200
-//     context.response.body = {}
-//     return
-//   }
-//   await next()
-// })
-
 // Create an oak Router
 const router = new Router();
 
+// Handle live reload websocket connection
 router.get('/_r', async ctx => {
   await ctx.upgrade();
 });
