@@ -9,20 +9,20 @@ if (!globalThis.fetch) {
     globalThis.fetch = fetch;
 }
 
-const isServerBuild = !!process.argv.find(a => a === 'server/build')
-console.log('Server build', isServerBuild)
+const isProdBuild = !!process.argv.find(a => a === 'build')
+console.log('Production build', isProdBuild)
 
 export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        'format': isServerBuild ? 'esm' : undefined,
+        'format': isProdBuild ? 'esm' : undefined,
         chunkFileNames: 'q-[hash].js',
         assetFileNames: 'q-[hash].[ext]',
       },
     },
   },
-  publicDir: !isServerBuild,
+  publicDir: !isProdBuild,
   ssr: {
     noExternal: true,
   },
@@ -35,7 +35,7 @@ export default defineConfig({
       },
       symbolsOutput: (data) => {
         // Skip symbols on SSR build
-        if (isServerBuild) {
+        if (isProdBuild) {
           return
         }
         outputJSON('./server/q-symbols.json', data);
