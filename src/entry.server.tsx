@@ -7,7 +7,7 @@
  */
 
 import { renderToString, RenderToStringOptions, QwikLoader } from '@builder.io/qwik/server';
-import { Root } from './root.tsx';
+import { App } from './app.tsx';
 
 /**
  * Entry point for server-side pre-rendering.
@@ -42,8 +42,8 @@ html { font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Ro
         }</style>
       </head>
       <body q:base="/" class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style={{"background-image": "url('/header.png');"}}>
-        <Root url={opts.url}/>
-        <QwikLoader debug={opts.debug} events={undefined} />
+        <App url={opts.url}/>
+        <QwikLoader debug={opts.debug} />
       </body>
     </html>,
     opts

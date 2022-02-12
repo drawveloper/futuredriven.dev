@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { qwikRollup } from '@builder.io/qwik/optimizer';
+import { qwikVite } from '@builder.io/qwik/optimizer';
 import { writeFile, mkdir } from 'fs/promises';
 import { dirname, resolve } from 'path';
 import fetch from 'node-fetch';
@@ -27,8 +27,8 @@ export default defineConfig({
     noExternal: true,
   },
   plugins: [
-    FullReload(['server/*.ts'], { delay: 2000 }),
-    qwikRollup({
+    //FullReload(['server/*.ts'], { delay: 2000 }),
+    qwikVite({
       srcDir: resolve('./src'),
       entryStrategy: {
         type: 'single',
