@@ -1,3 +1,5 @@
+/** @jsxImportSource nano */
+
 import { PostsState } from "../posts.ts";
 
 export const Posts = (props: {posts: PostsState}) => (
