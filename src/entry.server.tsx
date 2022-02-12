@@ -8,15 +8,13 @@
 
 import { renderToString, RenderToStringOptions, QwikLoader } from '@builder.io/qwik/server';
 import { Root } from './root.tsx';
-import { BlogState } from './blog.ts'
-// import mock from '../test/mock-state.json' assert { type: "json" };
 
 /**
  * Entry point for server-side pre-rendering.
  *
  * @returns a promise when all of the rendering is completed.
  */
-export function render(opts: RenderToStringOptions, state: BlogState) {
+export function render(opts: RenderToStringOptions) {
   return renderToString(
     <html>
       <head>
@@ -44,7 +42,7 @@ html { font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Ro
         }</style>
       </head>
       <body q:base="/" class="leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed" style={{"background-image": "url('/header.png');"}}>
-        <Root state={state}/>
+        <Root url={opts.url}/>
         <QwikLoader debug={opts.debug} events={undefined} />
       </body>
     </html>,

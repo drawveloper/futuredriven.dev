@@ -23,15 +23,11 @@ export async function getPosts() {
       "last_edited_time",
       "url",
     ], post);
-    if (post.properties) {
-      base.title = post.properties.Name.title[0];
-    }
-    console.log(post.properties.Preview)
     const parser = NotionBlocksMarkdownParser.getInstance();
     const parsedPreview = parser.parseRichTexts(post.properties.Preview.rich_text)
-    console.log('parsedPreview', parsedPreview)
+    base.title = parser.parseRichTexts(post.properties.Name.title)
     base.preview = Marked.parse(parsedPreview).content
-    base.url = base.url.replace("https://www.notion.so", "/posts");
+    base.url = base.url.replace("https://www.notion.so", "/p");
     return base;
   }, results);
 }

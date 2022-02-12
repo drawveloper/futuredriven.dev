@@ -1,9 +1,8 @@
-export type BlogState = {
-    post: {
-        title: string,
-        content: string,
-    },
-    posts: Array<Post>
+export type PostsState = Array<Post>
+
+export type PostState = {
+    title: string
+    content: string
 }
 
 export interface External {

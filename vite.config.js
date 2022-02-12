@@ -2,6 +2,12 @@ import { defineConfig } from 'vite';
 import { qwikRollup } from '@builder.io/qwik/optimizer';
 import { writeFile, mkdir } from 'fs/promises';
 import { dirname, resolve } from 'path';
+import fetch from 'node-fetch';
+import FullReload from 'vite-plugin-full-reload'
+
+if (!globalThis.fetch) {
+    globalThis.fetch = fetch;
+}
 
 const isServerBuild = !!process.argv.find(a => a === 'server/build')
 console.log('Server build', isServerBuild)
@@ -16,11 +22,12 @@ export default defineConfig({
       },
     },
   },
-  publicDir: false,
+  publicDir: !isServerBuild,
   ssr: {
     noExternal: true,
   },
   plugins: [
+    FullReload(['server/*.ts'], { delay: 2000 }),
     qwikRollup({
       srcDir: resolve('./src'),
       entryStrategy: {

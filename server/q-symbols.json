@@ -1,8 +1,12 @@
 {
   "mapping": {
-    "Root_component_withStyles": "q-8ca21722.js",
-    "Root_component_onRender": "q-8ca21722.js",
-    "Root_component": "q-8ca21722.js"
+    "Post_component_onRender": "q-01f94cd4.js",
+    "Post_component": "q-01f94cd4.js",
+    "Root_component_withStyles": "q-01f94cd4.js",
+    "Root_component_onRender": "q-01f94cd4.js",
+    "Root_component": "q-01f94cd4.js",
+    "Posts_component_onRender": "q-01f94cd4.js",
+    "Posts_component": "q-01f94cd4.js"
   },
   "version": "1"
 }

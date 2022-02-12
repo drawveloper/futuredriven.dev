@@ -81,61 +81,87 @@ app.use(async (context, next) => {
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-async function renderPosts(context: Context) {
-  console.log(
-    ">>> posts",
-    context.request.url.pathname,
-  );
-  let start = Date.now();
-  const posts = await getPosts();
-  let ms = Date.now() - start;
-  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
-  console.log(`>>> fetch complete in ${ms}ms`)
-
-  start = Date.now();
-  const result = await render({
-    symbols,
-    url: context.request.url,
-    debug: false,
-  }, {posts});
-  ms = Date.now() - start;
-  context.response.headers.set("X-Render-Time", `${ms}ms`);
-  console.log(`>>> render complete in ${ms}ms`)
-
-  context.response.body = result.html;
-}
+// Handle vite ping on extracted src/routes (crazy)
+app.use(async (context, next) => {
+  if (context.request.url.pathname.endsWith('/__vite_ping')){
+    console.log('vite ping for', context.request.url.pathname)
+    context.response.status = 200
+    context.response.body = {}
+    return
+  }
+  await next()
+})
 
 // Create an oak Router
 const router = new Router();
 
-router.get("/", renderPosts);
+router.get("/api/posts", async (context) => {
+  console.log(
+    ">>> API posts",
+    context.request.url.pathname,
+  );
+  const start = Date.now();
+  const posts = await getPosts();
+  const ms = Date.now() - start;
+  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
+  console.log(`>>> fetch complete in ${ms}ms`)
 
-router.get("/posts/:id", async (context) => {
+  context.response.body = posts;
+})
+
+router.get("/api/posts/:id", async (context) => {
+  console.log(
+    ">>> API post id",
+    context.request.url.pathname,
+    context.params?.id,
+  );
+  const start = Date.now();
+  const content = await getPostById(context.params?.id);
+  const ms = Date.now() - start;
+  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
+  console.log(`>>> fetch complete in ${ms}ms`)
+
+  const post = {
+    title: context.params?.id,
+    content,
+  }
+
+  context.response.body = post;
+})
+
+router.get("/", async (context) => {
+  console.log(
+    ">>> posts",
+    context.request.url.pathname,
+  );
+
+  const start = Date.now();
+  const result = await render({
+    symbols,
+    url: context.request.url,
+    debug: false,
+  });
+  const ms = Date.now() - start;
+  context.response.headers.set("X-Render-Time", `${ms}ms`);
+  console.log(`>>> render complete in ${ms}ms`)
+
+  context.response.body = result.html;
+});
+
+router.get("/p/:id", async (context) => {
   console.log(
     ">>> post id",
     context.request.url.pathname,
     context.params?.id,
   );
 
-  const idAfterDash = context.params?.id.split('-').pop() as string
-
-  let start = Date.now();
-  const [posts, content] = await Promise.all([getPosts(), getPostById(idAfterDash)]);
-  let ms = Date.now() - start;
-  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
-  console.log(`>>> fetch complete in ${ms}ms`)
-
-  start = Date.now();
-  const post = {
-    title: context.params?.id,
-    content,
-  }
+  const start = Date.now();
   const result = await render({
     symbols,
     url: context.request.url,
     debug: false,
-  }, {posts, post});
-  ms = Date.now() - start;
+  });
+  const ms = Date.now() - start;
   context.response.headers.set("X-Render-Time", `${ms}ms`);
   console.log(`>>> render complete in ${ms}ms`)
 

@@ -1,4 +1,4 @@
-import{u as a,j as n,H as s,w as l,q as i,o as d}from"./q-f07abb53.js";import{_ as o}from"./assets/index.ed1ce25c.js";var c=`/*
+import{u as s,j as n,o as l,q as o,H as c,c as d,w as h,F as m}from"./q-a9d25f43.js";import{_ as i}from"./assets/index.21de979f.js";const p=()=>{const[e]=s();return n("div",{class:"w-full p-12 overflow-hidden",children:[n("h1",{children:e.title}),n("div",{innerHTML:e.content})]})},f=async e=>{const a=await(await fetch(`http://localhost:8080/api/posts/${e.id}`)).json();return l(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Post_component_onRender",[a]))};var u=`/*
 ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -466,13 +466,13 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .m-6 {
   margin: 1.5rem;
 }
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 .mb-8 {
   margin-bottom: 2rem;
@@ -548,10 +548,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .text-center {
   text-align: center;
 }
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -559,6 +555,10 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .text-xs {
   font-size: 0.75rem;
@@ -583,12 +583,12 @@ Ensure the default browser behavior of the \`hidden\` attribute.
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity));
 }
-.text-transparent {
-  color: transparent;
-}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-transparent {
+  color: transparent;
 }
 .text-gray-500 {
   --tw-text-opacity: 1;
@@ -648,4 +648,4 @@ Ensure the default browser behavior of the \`hidden\` attribute.
     line-height: 2.5rem;
   }
 }
-`;const h=c,m=()=>{const[e]=a();return n(s,{class:"my-app",children:[n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"#",children:["Future",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"Driven"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:[n("div",{class:"flex flex-col w-3/5 justify-center lg:items-start overflow-y-hidden",children:[!e.state.post&&e.state.posts&&e.state.posts.map(t=>n("a",{href:t.url,children:n("div",{class:"flex flex-col w-full justify-center lg:items-start overflow-y-hidden",children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:t.title.plain_text}),n("div",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",innerHTML:t.preview})]})})),e.state.post&&n("div",{class:"w-full p-12 overflow-hidden",children:[n("h1",{children:e.state.post.title}),n("div",{innerHTML:e.state.post.content})]})]}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Future Driven 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})]})]}),n("p",{style:{"text-align":"center"}})]})},p=e=>(l(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles")),d(i(()=>o(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender",[e])));var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Root_component_withStyles:h,Root_component_onRender:m,Root_component:p});export{p as Root_component,m as Root_component_onRender,h as Root_component_withStyles};
+`;const g=u,b=()=>{const[e]=s();return n(c,{class:"my-app",children:n("div",{class:"h-full",children:[n("div",{class:"w-full container mx-auto",children:n("div",{class:"w-full flex items-center justify-between",children:n("a",{class:"flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl",href:"/",children:["Future",n("span",{class:"bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500",children:"Driven"})]})})}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:[n("div",{class:"flex flex-col w-3/5 justify-center lg:items-start overflow-y-hidden",children:e()}),n("div",{class:"container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between",children:n("div",{class:"w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0",children:n("p",{style:{"text-align":"center"},children:[n("a",{class:"text-gray-500 no-underline hover:no-underline",href:"#",children:"\xA9 Future Driven 2022"})," ","\u2014 Made in Rio with \u{1F90D}"]})})})]})]})})},w=d(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Post_component")),x=d(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Posts_component")),y=e=>{h(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_withStyles"));const t=e.url.pathname.split("-").pop();return l(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Root_component_onRender",[()=>e.url.pathname==="/"?n(x,{}):t?n(w,{id:t}):n("span",{children:"not found :("})]))},v=()=>{const[e]=s();return n(m,{children:e.posts.map(t=>n("a",{href:t.url,children:n("div",{class:"flex flex-col w-full justify-center lg:items-start overflow-y-hidden",children:[n("h1",{class:"my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left",children:t.title}),n("div",{class:"leading-normal text-base md:text-2xl mb-8 text-center md:text-left",innerHTML:t.preview})]})}))})},_=async()=>{const a={posts:await(await fetch("http://localhost:8080/api/posts")).json()};return l(o(()=>i(()=>Promise.resolve().then(function(){return r}),void 0),"Posts_component_onRender",[a]))};var r=Object.freeze({__proto__:null,[Symbol.toStringTag]:"Module",Post_component_onRender:p,Post_component:f,Root_component_withStyles:g,Root_component_onRender:b,Root_component:y,Posts_component_onRender:v,Posts_component:_});export{f as Post_component,p as Post_component_onRender,_ as Posts_component,v as Posts_component_onRender,y as Root_component,b as Root_component_onRender,g as Root_component_withStyles};
