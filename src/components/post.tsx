@@ -1,4 +1,4 @@
-/** @jsxImportSource nano */
+/** @jsxImportSource https://esm.sh/nano-jsx@v0.0.29/lib */
 import { PostState } from "../posts.ts";
 
 export const Post = (props: {post: PostState}) => (

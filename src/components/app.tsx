@@ -1,4 +1,4 @@
-/** @jsxImportSource nano */
+/** @jsxImportSource https://esm.sh/nano-jsx@v0.0.29/lib */
 import { Helmet, renderSSR } from "../deps.ts";
 
 import { Posts } from "./posts.tsx"
