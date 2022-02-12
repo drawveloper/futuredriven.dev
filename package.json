@@ -17,9 +17,6 @@
     "concurrently": "^7.0.0",
     "prettier": "2.3.0",
     "typescript": "^4.5.2",
-    "vite": "^2.8.1",
-    "vite-plugin-full-reload": "^1.0.0",
-    "wait-on": "^6.0.1",
     "windicss": "^3.4.3"
   },
   "author": "Guilherme Rodrigues",

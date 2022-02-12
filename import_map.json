@@ -1,6 +1,6 @@
 {
   "imports": {
-    "nano/jsx-runtime": "https://deno.land/x/nano_jsx@v0.0.28/jsx-runtime/index.ts",
-    "nano": "https://deno.land/x/nano_jsx@v0.0.28/mod.ts"
+    "nano/jsx-runtime": "https://deno.land/x/nano_jsx@v0.0.29/jsx-runtime/index.ts",
+    "nano": "https://deno.land/x/nano_jsx@v0.0.29/mod.ts"
   }
 }
