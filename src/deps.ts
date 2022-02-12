@@ -8,7 +8,7 @@ export {
   Router,
   Status,
 } from "https://deno.land/x/oak/mod.ts";
-export { Helmet, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.28/mod.ts";
+export { Helmet, renderSSR, h } from "https://deno.land/x/nano_jsx@v0.0.29/mod.ts";
 export {
   bold,
   cyan,

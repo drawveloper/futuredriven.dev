@@ -1,4 +1,4 @@
-import { Helmet, renderSSR } from "../deps.ts";
+import { Helmet, renderSSR, h } from "../deps.ts";
 
 import { Posts } from "./posts.tsx"
 import { Post } from "./post.tsx"
