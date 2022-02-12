@@ -8,4 +8,12 @@ Landing pages and blog engine for Future Driven sites:
 
 Runs on Deno and Deno Deploy.
 
-Want a similar starter? Try https://github.com/FutureDrivenDev/qwik-app-deno-example
+### Running locally
+
+Create a `.env` file to add tokens and enable live reload: 
+
+```
+NOTION_TOKEN=...
+NOTION_POSTS_DB=...
+ENABLE_LIVE_RELOAD=true
+```

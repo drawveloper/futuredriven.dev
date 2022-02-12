@@ -1,24 +1,20 @@
 import {
   Application,
-  Context,
   HttpError,
   Router,
   Status,
-  httpErrors,
   bold,
   cyan,
   green,
   red,
   join,
-} from "../deps.ts";
+} from "./deps.ts";
 
-import { render } from "./build/entry.server.js";
-import symbols from "./q-symbols.json" assert { type: "json" };
+import { render } from "./components/app.tsx";
 import { getPosts, getPostById } from "./posts.ts";
 
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
-const distFolderPath = join(__dirname, "..", "dist");
 const publicFolderPath = join(__dirname, "..", "public");
 
 const app = new Application();
@@ -81,53 +77,23 @@ app.use(async (context, next) => {
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-// Handle vite ping on extracted src/routes (crazy)
-app.use(async (context, next) => {
-  if (context.request.url.pathname.endsWith('/__vite_ping')){
-    console.log('vite ping for', context.request.url.pathname)
-    context.response.status = 200
-    context.response.body = {}
-    return
-  }
-  await next()
-})
+// // Handle vite ping on extracted src/routes (crazy)
+// app.use(async (context, next) => {
+//   if (context.request.url.pathname.endsWith('/__vite_ping')){
+//     console.log('vite ping for', context.request.url.pathname)
+//     context.response.status = 200
+//     context.response.body = {}
+//     return
+//   }
+//   await next()
+// })
 
 // Create an oak Router
 const router = new Router();
 
-router.get("/api/posts", async (context) => {
-  console.log(
-    ">>> API posts",
-    context.request.url.pathname,
-  );
-  const start = Date.now();
-  const posts = await getPosts();
-  const ms = Date.now() - start;
-  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
-  console.log(`>>> fetch complete in ${ms}ms`)
-
-  context.response.body = posts;
-})
-
-router.get("/api/posts/:id", async (context) => {
-  console.log(
-    ">>> API post id",
-    context.request.url.pathname,
-    context.params?.id,
-  );
-  const start = Date.now();
-  const content = await getPostById(context.params?.id);
-  const ms = Date.now() - start;
-  context.response.headers.set("X-Fetch-Time", `${ms}ms`);
-  console.log(`>>> fetch complete in ${ms}ms`)
-
-  const post = {
-    title: context.params?.id,
-    content,
-  }
-
-  context.response.body = post;
-})
+router.get('/_r', async ctx => {
+  await ctx.upgrade();
+});
 
 router.get("/", async (context) => {
   console.log(
@@ -135,17 +101,19 @@ router.get("/", async (context) => {
     context.request.url.pathname,
   );
 
+  const startF = Date.now();
+  const posts = await getPosts();
+  const msF = Date.now() - startF;
+  context.response.headers.set("X-Fetch-Time", `${msF}ms`);
+  console.log(`>>> fetch complete in ${msF}ms`)
+
   const start = Date.now();
-  const result = await render({
-    symbols,
-    url: context.request.url,
-    debug: false,
-  });
+  const result = await render({posts, post: null});
   const ms = Date.now() - start;
   context.response.headers.set("X-Render-Time", `${ms}ms`);
   console.log(`>>> render complete in ${ms}ms`)
 
-  context.response.body = result.html;
+  context.response.body = result;
 });
 
 router.get("/p/:id", async (context) => {
@@ -154,36 +122,34 @@ router.get("/p/:id", async (context) => {
     context.request.url.pathname,
     context.params?.id,
   );
+  const cleanId = context.params?.id.split('-').pop() as string 
+  const startF = Date.now();
+  const content = await getPostById(cleanId);
+  const msF = Date.now() - startF;
+  context.response.headers.set("X-Fetch-Time", `${msF}ms`);
+  console.log(`>>> fetch complete in ${msF}ms`)
+
+  const post = {
+    title: context.params?.id,
+    content,
+  }
 
   const start = Date.now();
-  const result = await render({
-    symbols,
-    url: context.request.url,
-    debug: false,
-  });
+  const result = await render({posts: null, post});
   const ms = Date.now() - start;
   context.response.headers.set("X-Render-Time", `${ms}ms`);
   console.log(`>>> render complete in ${ms}ms`)
 
-  context.response.body = result.html;
+  context.response.body = result;
 })
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// Static content under /dist or /public
+// Static content under /public
 app.use(async (context) => {
-  console.log(`>>> static try /dist${context.request.url.pathname}`);
-  try {
-    await context.send({ root: distFolderPath });
-  } catch (err) {
-    if (err instanceof httpErrors.NotFound) {
-      console.log(`>>> static try /public${context.request.url.pathname}`)
-      await context.send({ root: publicFolderPath });
-    } else {
-      throw err
-    }
-  }
+  console.log(`>>> static try /public${context.request.url.pathname}`)
+  await context.send({ root: publicFolderPath });
 });
 
 // Log hello

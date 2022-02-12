@@ -1,4 +1,60 @@
-import { chain, Client, NotionBlocksMarkdownParser, pick, Marked } from "../deps.ts";
+import { chain, Client, NotionBlocksMarkdownParser, pick, Marked } from "./deps.ts";
+
+export type PostsState = Array<Post>
+
+export type PostState = {
+    title: string
+    content: string
+}
+
+export interface External {
+    url: string;
+}
+
+export interface Cover {
+    type: string;
+    external: External;
+}
+
+export interface Text {
+    content: string;
+    link?: any;
+}
+
+export interface Annotations {
+    bold: boolean;
+    italic: boolean;
+    strikethrough: boolean;
+    underline: boolean;
+    code: boolean;
+    color: string;
+}
+
+export interface Title {
+    type: string;
+    text: Text;
+    annotations: Annotations;
+    plain_text: string;
+    href?: any;
+}
+
+export interface Preview {
+    type: string;
+    text: Text;
+    annotations: Annotations;
+    plain_text: string;
+    href?: any;
+}
+
+export interface Post {
+    id: string;
+    cover: Cover | null;
+    created_time: string;
+    last_edited_time: string;
+    url: string;
+    title: Title;
+    preview: Preview;
+}
 
 // Initializing a client
 const auth = Deno.env.get("NOTION_TOKEN") || "";
@@ -13,7 +69,7 @@ if (databaseId == "") {
 
 const notion = new Client({ auth });
 
-export async function getPosts() {
+export async function getPosts(): Promise<PostsState> {
   const { results } = await notion.databases.query({ database_id: databaseId });
   return chain((post: { properties: Record<any, any> }) => {
     const base = pick([
@@ -32,7 +88,7 @@ export async function getPosts() {
   }, results);
 }
 
-export async function getPostById(pageId: string) {
+export async function getPostById(pageId: string): Promise<string> {
   const { results } = await notion.blocks.children.list({ block_id: pageId });
   const parser = NotionBlocksMarkdownParser.getInstance();
   const md = parser.parse(results);
