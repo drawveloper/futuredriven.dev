@@ -1,6 +1,8 @@
 {
   "imports": {
     "nano/jsx-runtime": "https://deno.land/x/nano_jsx@v0.0.29/jsx-runtime/index.ts",
-    "nano": "https://deno.land/x/nano_jsx@v0.0.29/mod.ts"
+    "nano": "https://deno.land/x/nano_jsx@v0.0.29/mod.ts",
+    "windicss/helpers": "https://esm.sh/windicss/helpers",
+    "windicss/colors": "https://esm.sh/windicss/colors"
   }
 }
