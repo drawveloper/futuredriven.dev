@@ -54,19 +54,17 @@ export const App = (props: { post: PostState, posts: PostsState }) => {
           </a>
         </div>
       </div>
-      <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
+      <div class="container pt-20 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
         <div class="flex flex-col w-3/5 justify-center lg:items-start overflow-y-hidden">
           {renderPage()}
         </div>
-        <div class="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
-          <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in fixed bottom-0">
-            <p style={{ "text-align": "center" }}>
-              <a class="text-gray-500 no-underline hover:no-underline" href="#">
-                &copy; Future Driven 2022
-              </a>{" "}
-              — Made in Rio with 🤍
-            </p>
-          </div>
+        <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in">
+          <p style={{ "text-align": "center" }}>
+            <a class="text-gray-500 no-underline hover:no-underline" href="#">
+              &copy; Future Driven 2022
+            </a>{" "}
+            — Made in Rio with 🤍
+          </p>
         </div>
       </div>
     </div>

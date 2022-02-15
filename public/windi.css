@@ -145,20 +145,14 @@
 .p-12 {
   padding: 3rem;
 }
-.pt-24 {
-  padding-top: 6rem;
+.pt-20 {
+  padding-top: 5rem;
 }
 .pt-16 {
   padding-top: 4rem;
 }
 .pb-6 {
   padding-bottom: 1.5rem;
-}
-.fixed {
-  position: fixed;
-}
-.bottom-0 {
-  bottom: 0px;
 }
 .text-center {
   text-align: center;
@@ -201,9 +195,6 @@
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-  }
-  .md\:pt-36 {
-    padding-top: 9rem;
   }
   .md\:text-left {
     text-align: left;

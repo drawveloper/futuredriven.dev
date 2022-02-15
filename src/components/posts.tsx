@@ -2,21 +2,17 @@
 import { PostsState } from "../posts.ts";
 
 export const Posts = (props: {posts: PostsState}) => (
-  <>
-  {
-    props.posts.map((post: any) => (
-        <div class="flex flex-col w-full justify-center lg:items-start overflow-y-hidden">
-          <a href={post.url} class="no-underline">
-            <h1 class="my-4 text-3xl md:text-5xl text-indigo-900 font-bold leading-tight text-center md:text-left">
-              {post.title}
-            </h1>
-          </a>
-          <div class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left"
-            innerHTML={{ __dangerousHtml: post.preview }}>
-          </div>
+  props.posts.map((post: any) => (
+      <div class="flex flex-col w-full justify-center lg:items-start overflow-y-hidden">
+        <a href={post.url} class="no-underline">
+          <h1 class="my-4 text-3xl md:text-5xl text-indigo-900 font-bold leading-tight text-center md:text-left">
+            {post.title}
+          </h1>
+        </a>
+        <div class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left"
+          innerHTML={{ __dangerousHtml: post.preview }}>
         </div>
-      )
+      </div>
     )
-  }
-  </>
+  )
 )
