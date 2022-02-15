@@ -6,8 +6,8 @@ export const Posts = (props: {posts: PostsState}) => (
   {
     props.posts.map((post: any) => (
         <div class="flex flex-col w-full justify-center lg:items-start overflow-y-hidden">
-          <a href={post.url}>
-            <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+          <a href={post.url} class="no-underline">
+            <h1 class="my-4 text-3xl md:text-5xl text-indigo-900 font-bold leading-tight text-center md:text-left">
               {post.title}
             </h1>
           </a>

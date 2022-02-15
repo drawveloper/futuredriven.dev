@@ -22,7 +22,7 @@ export function render(state: { post: any, posts: any }) {
         ${head.join("\n")}
         ${Deno.env.get('ENABLE_LIVE_RELOAD')? <script src="/livereload.js"></script> : ''}
       </head>
-      <body class="text-indigo-400 m-6 bg-cover bg-fixed bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800">
+      <body class="font-sans text-indigo-900 m-6 bg-gradient-to-r from-light-50 via-light-100 to-blue-100/50">
         ${body}
         ${footer.join("\n")}
       </body>
@@ -45,10 +45,10 @@ export const App = (props: { post: PostState, posts: PostsState }) => {
       <div class="w-full container mx-auto">
         <div class="w-full flex items-center justify-between">
           <a
-            class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+            class="flex items-center text-indigo-900 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
             href="/"
           >
-            Future<span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
+            Future<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-700 to-indigo-900">
               Driven
             </span>
           </a>
