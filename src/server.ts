@@ -104,11 +104,11 @@ router.get("/", async (context) => {
 router.get("/p/:id", async (context) => {
   const cleanId = context.params?.id.split('-').pop() as string 
   start('fetch')
-  const content = await getPostById(cleanId);
+  const {title, content} = await getPostById(cleanId);
   end('fetch')
 
   const post = {
-    title: context.params?.id,
+    title,
     content,
   }
 

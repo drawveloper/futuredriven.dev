@@ -48,12 +48,12 @@ export interface Preview {
 
 export interface Post {
     id: string;
-    cover: Cover | null;
-    created_time: string;
-    last_edited_time: string;
+    coverUrl: string;
+    created_time?: string;
+    last_edited_time?: string;
     url: string;
-    title: Title;
-    preview: Preview;
+    title: string;
+    content: string;
 }
 
 // Initializing a client
@@ -88,11 +88,23 @@ export async function getPosts(): Promise<PostsState> {
   }, results);
 }
 
-export async function getPostById(pageId: string): Promise<string> {
-  const { results } = await notion.blocks.children.list({ block_id: pageId });
+export async function getPostById(pageId: string): Promise<Post> {
+  const [page, blocks] = await Promise.all([
+    notion.pages.retrieve({page_id: pageId}),
+    notion.blocks.children.list({ block_id: pageId }),
+  ])
   const parser = NotionBlocksMarkdownParser.getInstance();
-  const md = parser.parse(results);
-  return Marked.parse(md).content;
+  const title = parser.parseRichTexts(page.properties.Name.title)
+  const url = page.url
+  const md = parser.parse(blocks.results);
+  const content = Marked.parse(md).content
+  return {
+    id: pageId,
+    coverUrl: page.cover?.external?.url,
+    content,
+    title,
+    url,
+  };
 }
 
 //await getPostById("51fe3c11-9d29-4f7d-9d9a-e321986c42c0")
