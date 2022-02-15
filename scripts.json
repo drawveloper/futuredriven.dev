@@ -1,9 +1,17 @@
 {
   "$schema": "https://deno.land/x/denon/schema.json",
   "scripts": {
-    "start": "deno run --allow-net --allow-read --allow-env --unstable --no-check src/server.ts"
+    "dev": "deno run -A --unstable --no-check src/server.ts"
   },
   "watcher": {
-    "match": ["src/**/*.*", "public/windi.css"]
+    "exts": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "md"
+    ],
+    "match": ["deno.json", "src/**/*.ts", "src/**/*.tsx", "public/markdown/*.md"]
   }
 }

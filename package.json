@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "Landing pages and blog for Future Driven.",
   "scripts": {
-    "build": "windicss --output public/windi.css --minify src/components/*.tsx",
+    "build": "windicss --minify --style --config windi.config.js --output public/windi.css",
     "dev": "concurrently -n \"windi,deno\" -c \"green,blue\" \"npm run windi\" \"denon start\"",
-    "windi": "windicss --output public/windi.css --dev src/components/*.tsx",
+    "windi-dev": "windicss --dev --style --config windi.config.js --output public/windi.css",
+    "windi": "windicss --style --config windi.config.js --output public/windi.css",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "serve": "npm run build && denon start",

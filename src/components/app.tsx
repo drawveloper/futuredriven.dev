@@ -27,7 +27,7 @@ export function render(state: { post: any, posts: any }) {
         ${footer.join("\n")}
       </body>
     </html>`;
-};
+}
 
 export const App = (props: { post: PostState, posts: PostsState }) => {
   const renderPage = () => {

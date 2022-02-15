@@ -8,7 +8,9 @@ import {
   green,
   red,
   join,
+  createServerTimingMiddleware,
 } from "./deps.ts";
+import { isLiveReloadEnabled } from "./config.ts";
 
 import { render } from "./components/app.tsx";
 import { getPosts, getPostById } from "./posts.ts";
@@ -16,8 +18,10 @@ import { getPosts, getPostById } from "./posts.ts";
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
 const publicFolderPath = join(__dirname, "..", "public");
+const { start, end, serverTimingMiddleware } = createServerTimingMiddleware()
 
 const app = new Application();
+app.use(serverTimingMiddleware)
 
 // Error handler middleware
 app.use(async (context, next) => {
@@ -86,51 +90,31 @@ router.get('/_r', async ctx => {
 });
 
 router.get("/", async (context) => {
-  console.log(
-    ">>> posts",
-    context.request.url.pathname,
-  );
-
-  const startF = Date.now();
+  start('fetch')
   const posts = await getPosts();
-  const msF = Date.now() - startF;
-  context.response.headers.set("X-Fetch-Time", `${msF}ms`);
-  console.log(`>>> fetch complete in ${msF}ms`)
-
-  const start = Date.now();
-  const result = await render({posts, post: null});
-  const ms = Date.now() - start;
-  context.response.headers.set("X-Render-Time", `${ms}ms`);
-  console.log(`>>> render complete in ${ms}ms`)
-
+  end('fetch')
+  
+  start('render')
+  const result = render({posts, post: null});
+  end('render')
+  
   context.response.body = result;
 });
 
 router.get("/p/:id", async (context) => {
-  console.log(
-    ">>> post id",
-    context.request.url.pathname,
-    context.params?.id,
-  );
   const cleanId = context.params?.id.split('-').pop() as string 
-  const startF = Date.now();
+  start('fetch')
   const content = await getPostById(cleanId);
-  const msF = Date.now() - startF;
-  context.response.headers.set("X-Fetch-Time", `${msF}ms`);
-  console.log(`>>> fetch complete in ${msF}ms`)
+  end('fetch')
 
   const post = {
     title: context.params?.id,
     content,
   }
 
-  const start = Date.now();
-  const result = await render({posts: null, post});
-  const ms = Date.now() - start;
-  context.response.headers.set("X-Render-Time", `${ms}ms`);
-  console.log(`>>> render complete in ${ms}ms`)
-
-  context.response.body = result;
+  start('render')
+  context.response.body = render({posts: null, post});
+  end('render')
 })
 
 app.use(router.routes());
@@ -146,6 +130,20 @@ app.use(async (context) => {
 app.addEventListener("listen", () => {
   console.log(`Listening on ${cyan(`http://localhost:${PORT}`)}`);
 });
+
+if (isLiveReloadEnabled()) {
+  const start = Date.now();
+  // Run windi every restart because --dev will break with style blocks: 
+  const windi =  Deno.run({
+    cmd: ['npm', 'run', 'windi'],
+    stdout: "piped",
+    stderr: "piped",
+  })
+  const out = await windi.output()
+  const ms = Date.now() - start;
+  console.log(new TextDecoder().decode(out))
+  console.log(`>>> windi complete in ${ms}ms`)
+}
 
 // Start server
 await app.listen({ port: PORT });
