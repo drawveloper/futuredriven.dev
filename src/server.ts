@@ -20,6 +20,7 @@ const publicFolderPath = join(__dirname, "..", "public");
 const { start, end, serverTimingMiddleware } = createServerTimingMiddleware()
 
 const app = new Application();
+
 app.use(serverTimingMiddleware)
 
 // Error handler middleware

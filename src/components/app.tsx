@@ -18,7 +18,7 @@ setup({sheet, preflight: false})
 
 export function render(state: { post?: PostState, posts?: PostsState }) {
   sheet.reset()
-  const bodyClass = tw`font-sans text-indigo-900 m-6 bg-gradient-to-r from-white to-indigo-100`
+  const bodyClass = tw`font-sans text-indigo-900 m-10 lg:m-6 bg-gradient-to-r from-white to-indigo-100`
   const ssr = renderSSR(<Layout post={state.post!} posts={state.posts!} />);
   const { body, head, footer } = Helmet.SSR(ssr);
   const styleTag = getStyleTag(sheet)

@@ -20,7 +20,7 @@ export const Layout = (props: { post: PostState, posts: PostsState }) => {
       <div class={tw`w-full container mx-auto`}>
         <div class={tw`w-full flex items-center justify-between`}>
           <a
-            class={tw`flex items-center text-indigo-900 no-underline hover:no-underline font-bold text-2xl`}
+            class={tw`flex items-center no-underline hover:no-underline font-bold text-xl lg:text-2xl`}
             href="/"
           >
             Future<span class={tw`bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-700 to-indigo-900`}>
@@ -29,11 +29,11 @@ export const Layout = (props: { post: PostState, posts: PostsState }) => {
           </a>
         </div>
       </div>
-      <div class={tw`container pt-20 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between`}>
-        <div class={tw`flex flex-col w-3/5 justify-center items-start overflow-y-hidden`}>
+      <div class={tw`container pt-6 lg:pt-12 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between`}>
+        <div class={tw`flex flex-col lg:w-3/5 justify-center items-start overflow-y-hidden`}>
           {renderPage()}
         </div>
-        <div class={tw`w-full pt-16 pb-6 text-xs text-center md:text-center`}>
+        <div class={tw`w-full pt-16 pb-6 text-xs text-center md:text-center fade-in`}>
           <p style={{ "text-align": "center" }}>
             <a class={tw`text-gray-500 no-underline hover:no-underline`} href="#">
               &copy; Future Driven 2022
