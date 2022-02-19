@@ -1,15 +1,29 @@
-/** @jsxImportSource https://esm.sh/nano-jsx@v0.0.29/lib */
-import { Helmet, renderSSR } from "../deps.ts";
-
-import { Posts } from "./posts.tsx"
-import { Post } from "./post.tsx"
+/** @jsxImportSource https://esm.sh/nano-jsx@v0.0.29/lib **/
+import { 
+  Helmet, 
+  renderSSR, 
+  html,
+  setup,
+  virtualSheet, 
+  getStyleTag,
+  tw,
+} from "../deps.ts";
+import { isLiveReloadEnabled } from "../config.ts";
+import { Layout } from "./layout.tsx"
 import { PostState, PostsState } from "../posts.ts";
 
-export function render(state: { post: any, posts: any }) {
-  const ssr = renderSSR(<App post={state.post} posts={state.posts} />);
-  const { body, head, footer } = Helmet.SSR(ssr);
+const lr = isLiveReloadEnabled()
+const sheet = virtualSheet()
+setup({sheet, preflight: false})
 
-  return `<!DOCTYPE html>
+export function render(state: { post?: PostState, posts?: PostsState }) {
+  sheet.reset()
+  const bodyClass = tw`font-sans text-indigo-900 m-6 bg-gradient-to-r from-white to-indigo-100`
+  const ssr = renderSSR(<Layout post={state.post!} posts={state.posts!} />);
+  const { body, head, footer } = Helmet.SSR(ssr);
+  const styleTag = getStyleTag(sheet)
+
+  return html`<!DOCTYPE html>
     <html lang="en">
       <head>
         <title>Future Driven</title>
@@ -18,55 +32,15 @@ export function render(state: { post: any, posts: any }) {
         <meta name="theme-color" content="#ffffff"/>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/windi.css">
+        <meta name="description" content="Future Driven Blog — communication, culture and code — by Guilherme Rodrigues"/>
+        ${styleTag}
         ${head.join("\n")}
-        ${Deno.env.get('ENABLE_LIVE_RELOAD')? <script src="/livereload.js"></script> : ''}
+        ${lr ? <script src="/livereload.js"></script> : ''}
       </head>
-      <body class="font-sans text-indigo-900 m-6 bg-gradient-to-r from-light-50 via-light-100 to-blue-100/50">
+      <body class="${bodyClass}">
         ${body}
         ${footer.join("\n")}
       </body>
     </html>`;
 }
 
-export const App = (props: { post: PostState, posts: PostsState }) => {
-  const renderPage = () => {
-    if (props.posts) {
-      return <Posts posts={props.posts} />
-    }
-    else if (props.post) {
-      return <Post post={props.post} />
-    }
-    else return <span>404 - not found :(</span>
-  }
-
-  return (
-    <div class="h-full">
-      <div class="w-full container mx-auto">
-        <div class="w-full flex items-center justify-between">
-          <a
-            class="flex items-center text-indigo-900 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-            href="/"
-          >
-            Future<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-700 to-indigo-900">
-              Driven
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="container pt-20 mx-auto flex flex-wrap flex-col md:flex-row items-center justify-between">
-        <div class="flex flex-col w-3/5 justify-center lg:items-start overflow-y-hidden">
-          {renderPage()}
-        </div>
-        <div class="w-full pt-16 pb-6 text-xs text-center md:text-center fade-in">
-          <p style={{ "text-align": "center" }}>
-            <a class="text-gray-500 no-underline hover:no-underline" href="#">
-              &copy; Future Driven 2022
-            </a>{" "}
-            — Made in Rio with 🤍
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}

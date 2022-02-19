@@ -10,7 +10,6 @@ import {
   join,
   createServerTimingMiddleware,
 } from "./deps.ts";
-import { isLiveReloadEnabled } from "./config.ts";
 
 import { render } from "./components/app.tsx";
 import { getPosts, getPostById } from "./posts.ts";
@@ -95,7 +94,7 @@ router.get("/", async (context) => {
   end('fetch')
   
   start('render')
-  const result = render({posts, post: null});
+  const result = render({posts});
   end('render')
   
   context.response.body = result;
@@ -113,7 +112,7 @@ router.get("/p/:id", async (context) => {
   }
 
   start('render')
-  context.response.body = render({posts: null, post});
+  context.response.body = render({post});
   end('render')
 })
 
@@ -130,20 +129,6 @@ app.use(async (context) => {
 app.addEventListener("listen", () => {
   console.log(`Listening on ${cyan(`http://localhost:${PORT}`)}`);
 });
-
-if (isLiveReloadEnabled()) {
-  const start = Date.now();
-  // Run windi every restart because --dev will break with style blocks: 
-  const windi =  Deno.run({
-    cmd: ['npm', 'run', 'windi'],
-    stdout: "piped",
-    stderr: "piped",
-  })
-  const out = await windi.output()
-  const ms = Date.now() - start;
-  console.log(new TextDecoder().decode(out))
-  console.log(`>>> windi complete in ${ms}ms`)
-}
 
 // Start server
 await app.listen({ port: PORT });
