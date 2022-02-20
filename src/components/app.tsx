@@ -9,17 +9,17 @@ import {
   tw,
 } from "../deps.ts";
 import { isLiveReloadEnabled } from "../config.ts";
+import { AppState } from "./state.ts"
 import { Layout } from "./layout.tsx"
-import { PostState, PostsState } from "../posts.ts";
 
 const lr = isLiveReloadEnabled()
 const sheet = virtualSheet()
 setup({sheet, preflight: false})
 
-export function render(state: { post?: PostState, posts?: PostsState }) {
+export function render(state: AppState) {
   sheet.reset()
   const bodyClass = tw`font-sans text-indigo-900 m-10 lg:m-6 bg-gradient-to-r from-white to-indigo-100`
-  const ssr = renderSSR(<Layout post={state.post!} posts={state.posts!} />);
+  const ssr = renderSSR(<Layout post={state.post!} posts={state.posts!} blog={state.blog} capital={state.capital} dev={state.dev} />);
   const { body, head, footer } = Helmet.SSR(ssr);
   const styleTag = getStyleTag(sheet)
 

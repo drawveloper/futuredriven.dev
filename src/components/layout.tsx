@@ -2,15 +2,34 @@
 import { tw } from "../deps.ts";
 import { Posts } from "./posts.tsx"
 import { Post } from "./post.tsx"
-import { PostState, PostsState } from "../posts.ts";
+import { AppState } from "./state.ts"
 
-export const Layout = (props: { post: PostState, posts: PostsState }) => {
+
+export const Layout = (props: AppState) => {
+  const renderTLD = () => (
+    <span class={tw`pl-1`}>{
+      props.blog 
+        ? 'Blog'
+        : props.capital 
+          ? 'Capital'
+          : props.dev
+            ? 'Dev'
+            : ''
+    }</span>
+  )
+
   const renderPage = () => {
     if (props.posts) {
       return <Posts posts={props.posts} />
     }
     else if (props.post) {
       return <Post post={props.post} />
+    }
+    else if (props.capital) {
+      return <span>Coming Soon</span>
+    }
+    else if (props.dev) {
+      return <span>Hi! My name is Guilherme Rodrigues, and this is my personal homepage — under construction.</span>
     }
     else return <span>404 - not found :(</span>
   }
@@ -23,9 +42,11 @@ export const Layout = (props: { post: PostState, posts: PostsState }) => {
             class={tw`flex items-center no-underline hover:no-underline font-bold text-xl lg:text-2xl`}
             href="/"
           >
-            Future<span class={tw`bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-700 to-indigo-900`}>
+            Future
+            <span class={tw`pl-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-700 to-indigo-900`}>
               Driven
-            </span>
+            </span>{' '}
+            {renderTLD()}
           </a>
         </div>
       </div>
