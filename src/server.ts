@@ -1,34 +1,34 @@
 import {
   Application,
-  HttpError,
-  Router,
-  Status,
   bold,
+  createServerTimingMiddleware,
   cyan,
   green,
-  red,
+  HttpError,
   join,
-  createServerTimingMiddleware,
+  red,
+  Router,
+  Status,
 } from "./deps.ts";
 
 import { render } from "./components/app.tsx";
 import { AppState } from "./components/state.ts";
-import { getPosts, getPostById } from "./posts.ts";
+import { getPostById, getPosts } from "./posts.ts";
 
 const PORT = parseInt(Deno.env.get("PORT") || "8080");
 const __dirname = new URL(".", import.meta.url).pathname;
 const publicFolderPath = join(__dirname, "..", "public");
-const { start, end, serverTimingMiddleware } = createServerTimingMiddleware()
+const { start, end, serverTimingMiddleware } = createServerTimingMiddleware();
 
 const app = new Application();
 
 const getStateFromHostname = (hostname: string) => ({
-  blog: hostname.includes('futuredriven.blog'),
-  capital: hostname.includes('futuredriven.capital'),
-  dev: hostname.includes('futuredriven.dev'),
-})
+  blog: hostname.includes("futuredriven.blog"),
+  capital: hostname.includes("futuredriven.capital"),
+  dev: hostname.includes("futuredriven.dev"),
+});
 
-app.use(serverTimingMiddleware)
+app.use(serverTimingMiddleware);
 
 // Error handler middleware
 app.use(async (context, next) => {
@@ -72,7 +72,9 @@ app.use(async (context, next) => {
   await next();
   const rt = context.response.headers.get("X-Response-Time");
   console.log(
-    `${green(context.response.status.toString())} ${green(context.request.method)} ${cyan(context.request.url.pathname)} - ${
+    `${green(context.response.status.toString())} ${
+      green(context.request.method)
+    } ${cyan(context.request.url.pathname)} - ${
       bold(
         String(rt),
       )
@@ -92,54 +94,54 @@ app.use(async (context, next) => {
 const router = new Router();
 
 // Handle live reload websocket connection
-router.get('/_r', async ctx => {
+router.get("/_r", async (ctx) => {
   await ctx.upgrade();
 });
 
 router.get("/", async (context) => {
-  const state: AppState = getStateFromHostname(context.request.url.hostname)
+  const state: AppState = getStateFromHostname(context.request.url.hostname);
 
   if (state.blog) {
-    start('fetch')
+    start("fetch");
     const posts = await getPosts();
-    end('fetch')
+    end("fetch");
 
-    state.posts = posts
+    state.posts = posts;
   }
 
-  start('render')
+  start("render");
   const result = render(state);
-  end('render')
-  
+  end("render");
+
   context.response.body = result;
 });
 
 router.get("/p/:id", async (context) => {
-  const state: AppState = getStateFromHostname(context.request.url.hostname)
-  
+  const state: AppState = getStateFromHostname(context.request.url.hostname);
+
   if (state.blog) {
-    const cleanId = context.params?.id.split('-').pop() as string 
-    start('fetch')
-    const {title, content} = await getPostById(cleanId);
-    end('fetch')
+    const cleanId = context.params?.id.split("-").pop() as string;
+    start("fetch");
+    const { title, content } = await getPostById(cleanId);
+    end("fetch");
 
     state.post = {
       title,
       content,
-    }
+    };
   }
 
-  start('render')
+  start("render");
   context.response.body = render(state);
-  end('render')
-})
+  end("render");
+});
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 // Static content under /public
 app.use(async (context) => {
-  console.log(`>>> static try /public${context.request.url.pathname}`)
+  console.log(`>>> static try /public${context.request.url.pathname}`);
   await context.send({ root: publicFolderPath });
 });
 
