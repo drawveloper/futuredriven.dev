@@ -6,13 +6,13 @@ import { Ruler } from "./ruler.tsx";
 export const Dev = (props: any) => (
   <div
     class={tw
-      `flex flex-col w-full justify-center items-start overflow-y-hidden text-lg`}
+      `flex flex-col w-full justify-center items-start overflow-y-hidden text-md lg:text-lg`}
   >
     <div class={tw`max-w-sm`}>
       <span>
         Hi! My name is{" "}
         <strong>Guilherme Rodrigues</strong>, and I'm a software developer and
-        investor based in <br></br>Rio de Janeiro, Brasil. 🇧🇷
+        investor based in Rio de Janeiro, Brasil. 🇧🇷
       </span>
       <Ruler />
       <span>
