@@ -58,6 +58,10 @@ export function render(state: AppState) {
       <head>
         <title>${getTitle(state)}</title>
         <meta name="theme-color" content="#FFFFFF"/>
+        <meta property="og:image" content="/apple-icon-180x180.png" />
+        <meta property="og:title" content="${getTitle(state)}" />
+        <meta property="og:description" content="${getDescription(state)}" />
+        <meta property="og:locale" content="en_US" />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
