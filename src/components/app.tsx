@@ -57,7 +57,7 @@ export function render(state: AppState) {
     <html lang="en">
       <head>
         <title>${getTitle(state)}</title>
-        <meta name="theme-color" content="#0055FF"/>
+        <meta name="theme-color" content="#FFFFFF"/>
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -74,7 +74,6 @@ export function render(state: AppState) {
         <link rel="manifest" href="/manifest.json">
         <meta name="msapplication-TileColor" content="#FFFFFF">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#0055FF">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="${getDescription(state)}"/>
