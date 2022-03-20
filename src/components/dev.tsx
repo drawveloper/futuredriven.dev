@@ -18,7 +18,7 @@ export const Dev = (props: any) => (
       <span>
         I'm committed to a future in which Brasil is a prosperous country, and a
         {" "}
-        <strong>protagonist in technology.</strong> Learn more at{" "}
+        <strong>protagonist in technology.</strong> Join me:{" "}
         <Link href="https://movtech.org" target="_blank">
           movtech.org
         </Link>.
@@ -27,7 +27,7 @@ export const Dev = (props: any) => (
       <span>
         I am committed to{" "}
         <strong>high performance communication</strong>, and to sharing it with
-        other builders. More at{"   "}
+        other builders at{"   "}
         <Link href="https://futuredriven.capital">
           futuredriven.capital
         </Link>.

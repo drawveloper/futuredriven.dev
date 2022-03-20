@@ -30,7 +30,7 @@ export const Layout = (props: AppState) => {
         <div class={tw`w-full flex items-center justify-between`}>
           <a
             class={tw
-              `flex items-center no-underline hover:no-underline font-bold text-xl lg:text-2xl`}
+              `flex items-center no-underline hover:no-underline font-bold text-2xl`}
             href="/"
           >
             <img
