@@ -54,7 +54,7 @@ export const Layout = (props: AppState) => {
         </div>
         <div
           class={tw
-            `w-full pt-16 pb-6 text-xs text-center md:text-center fade-in`}
+            `w-full pt-20 pb-6 text-xs text-center md:text-center fade-in`}
         >
           <p style={{ "text-align": "center" }}>
             <a
@@ -63,7 +63,7 @@ export const Layout = (props: AppState) => {
             >
               &copy; Future Driven 2022
             </a>{" "}
-            — Made in Rio with 🤍
+            — Made in Rio with {props.dev || props.blog ? "💚" : "💙"}
           </p>
         </div>
       </div>
