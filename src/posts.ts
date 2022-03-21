@@ -11,6 +11,7 @@ export type PostsState = Array<Post>;
 export type PostState = {
   title: string;
   content: string;
+  published: string;
 };
 
 export interface External {
@@ -60,6 +61,7 @@ export interface Post {
   url: string;
   title: string;
   content: string;
+  published: string;
 }
 
 // Initializing a client
@@ -76,7 +78,13 @@ if (databaseId == "") {
 const notion = new Client({ auth });
 
 export async function getPosts(): Promise<PostsState> {
-  const { results } = await notion.databases.query({ database_id: databaseId });
+  const { results } = await notion.databases.query({
+    database_id: databaseId,
+    sorts: [{
+      property: "Published",
+      direction: "descending",
+    }],
+  });
   return chain((post: { properties: Record<any, any> }) => {
     const base = pick([
       "id",
@@ -89,6 +97,7 @@ export async function getPosts(): Promise<PostsState> {
     const parsedPreview = parser.parseRichTexts(
       post.properties.Preview.rich_text,
     );
+    base.published = post.properties.Published?.date?.start;
     base.title = parser.parseRichTexts(post.properties.Name.title);
     base.preview = Marked.parse(parsedPreview).content;
     base.url = base.url.replace("https://www.notion.so", "/p");
@@ -104,6 +113,7 @@ export async function getPostById(pageId: string): Promise<Post> {
 
   const parser = NotionBlocksMarkdownParser.getInstance();
   const title = parser.parseRichTexts(page.properties.Name.title);
+  const published = page.properties.Published?.date?.start;
   const url = page.url;
   const md = parser.parse(blocks.results);
   const content = Marked.parse(md).content;
@@ -113,5 +123,6 @@ export async function getPostById(pageId: string): Promise<Post> {
     content,
     title,
     url,
+    published,
   };
 }

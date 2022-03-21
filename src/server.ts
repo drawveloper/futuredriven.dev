@@ -122,12 +122,13 @@ router.get("/p/:id", async (context) => {
   if (state.blog) {
     const cleanId = context.params?.id.split("-").pop() as string;
     start("fetch");
-    const { title, content } = await getPostById(cleanId);
+    const { title, content, published } = await getPostById(cleanId);
     end("fetch");
 
     state.post = {
       title,
       content,
+      published,
     };
   }
 

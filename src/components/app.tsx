@@ -40,7 +40,8 @@ function getDescription(state: AppState) {
 
 export function render(state: AppState) {
   sheet.reset();
-  const bodyClass = tw`font-sans text-gray-900 m-10 lg:m-6 bg-white`;
+  const htmlClass = tw`font-sans text-gray-900 bg-white min-h-full`;
+  const bodyClass = tw`m-10 md:m-16 min-h-full`;
   const ssr = renderSSR(
     <Layout
       post={state.post!}
@@ -54,7 +55,7 @@ export function render(state: AppState) {
   const styleTag = getStyleTag(sheet);
 
   return html`<!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" class="${htmlClass}">
       <head>
         <title>${getTitle(state)}</title>
         <meta name="theme-color" content="#FFFFFF"/>

@@ -10,9 +10,12 @@ export const Dev = (props: any) => (
   >
     <div class={tw`max-w-sm`}>
       <span>
-        Hi! My name is{" "}
-        <strong>Guilherme Rodrigues</strong>, and I'm a software developer and
-        investor based in Rio de Janeiro, Brasil. 🇧🇷
+        Hello! My name is <strong>Guilherme Rodrigues</strong>.
+      </span>
+      <br />
+      <span>
+        I'm a software developer and investor based in Rio de Janeiro, Brasil.
+        🇧🇷
       </span>
       <Ruler />
       <span>
