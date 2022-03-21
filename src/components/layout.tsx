@@ -25,7 +25,7 @@ export const Layout = (props: AppState) => {
   };
 
   return (
-    <div class={tw`container mx-auto lg:w-4/5 `}>
+    <div class={tw`container mx-auto md:w-4/5 `}>
       <div class={tw`flex items-center justify-between`}>
         <a
           class={tw
@@ -40,7 +40,7 @@ export const Layout = (props: AppState) => {
           {renderTLD()}
         </a>
       </div>
-      <div class={tw`container pt-6 lg:pt-12 lg:w-3/5`}>
+      <div class={tw`container pt-6 lg:pt-12 lg:max-w-2xl`}>
         <div
           class={tw`flex flex-col justify-center items-start overflow-y-hidden`}
         >

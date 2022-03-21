@@ -4,11 +4,10 @@ import { PostState } from "../posts.ts";
 
 export const Post = (props: { post: PostState }) => (
   <div class={tw`w-full overflow-hidden` + " markdown"}>
-    <small class={tw`text-gray-500`}>{props.post.published}</small>
+    <small class={tw`text-gray-500 xl:max-w-2xl`}>{props.post.published}</small>
     <h1
       style="color: #0055FF"
-      class={tw
-        `mb-4 mt-2 text-3xl md:text-4xl text-gray-900 leading-tight md:mr-16`}
+      class={tw`mb-4 mt-2 text-3xl md:text-4xl text-gray-900 leading-tight`}
     >
       {props.post.title}
     </h1>
@@ -24,7 +23,7 @@ export const Post = (props: { post: PostState }) => (
       }
       `}
     </style>
-    <div class={tw`md:w-4/5`}>
+    <div class={tw`lg:max-w-xl`}>
       <div
         innerHTML={{ __dangerousHtml: props.post.content }}
       >
