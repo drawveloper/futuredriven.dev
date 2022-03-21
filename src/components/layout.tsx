@@ -47,12 +47,12 @@ export const Layout = (props: AppState) => {
           {renderPage()}
         </div>
         <div
-          class={tw`pt-20 pb-6 text-xs text-gray-500 `}
+          class={tw`pt-16 pb-6 text-xs text-gray-500 `}
         >
           <p>
             <a
-              class={tw`no-underline hover:no-underline`}
-              href="#"
+              class={tw`no-underline hover:underline`}
+              href="https://futuredriven.dev"
             >
               &copy; Future Driven 2022
             </a>{" "}
