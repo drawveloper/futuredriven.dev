@@ -32,7 +32,7 @@ function getDescription(state: AppState) {
   if (state.capital) {
     return "Investing in a future worth building.";
   } else if (state.blog) {
-    return "Communication, culture and code — from the future.";
+    return "Communication, culture and code — from the future. A blog by Guilherme Rodrigues.";
   } else if (state.dev) {
     return "Guilherme Rodrigues is a software developer and investor based in Rio de Janeiro, Brasil.";
   }
