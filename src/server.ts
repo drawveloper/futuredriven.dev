@@ -99,7 +99,12 @@ router.get("/_r", async (ctx) => {
 });
 
 router.get("/", async (context) => {
-  const state: AppState = getStateFromHostname(context.request.url.hostname);
+  const { hostname } = context.request.url;
+  if (hostname.includes("gadr.rio")) {
+    return context.response.redirect("https://futuredriven.dev");
+  }
+
+  const state: AppState = getStateFromHostname(hostname);
 
   if (state.blog) {
     start("fetch");
