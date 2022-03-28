@@ -30,3 +30,4 @@ export {
   virtualSheet,
 } from "https://cdn.esm.sh/twind@0.16.16/sheets?target=deno";
 export { apply, css } from "https://cdn.esm.sh/twind@0.16.16/css?target=deno";
+export { Metle as Cache } from "https://deno.land/x/metle@v2.0.1/mod.ts";

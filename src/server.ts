@@ -10,7 +10,6 @@ import {
   Router,
   Status,
 } from "./deps.ts";
-
 import { render } from "./components/app.tsx";
 import { AppState } from "./components/state.ts";
 import { getPostById, getPosts } from "./posts.ts";
