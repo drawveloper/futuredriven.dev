@@ -117,6 +117,10 @@ router.get("/", async (context) => {
   const result = render(state);
   end("render");
 
+  context.response.headers.set(
+    "Cache-Control",
+    "public, max-age=30, stale-while-revalidate=600",
+  );
   context.response.body = result;
 });
 
@@ -136,6 +140,10 @@ router.get("/p/:id", async (context) => {
     };
   }
 
+  context.response.headers.set(
+    "Cache-Control",
+    "public, max-age=30, stale-while-revalidate=600",
+  );
   start("render");
   context.response.body = render(state);
   end("render");
