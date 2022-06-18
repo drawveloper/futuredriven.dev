@@ -12,6 +12,6 @@
       "json",
       "md"
     ],
-    "match": ["deno.json", "src/**/*.ts", "src/**/*.tsx", "public/markdown/*.md"]
+    "match": ["deno.json", "src/**/*.ts", "src/**/*.tsx", "public/*"]
   }
 }

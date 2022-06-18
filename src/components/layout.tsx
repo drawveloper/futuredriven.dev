@@ -3,6 +3,7 @@ import { tw } from "../deps.ts";
 import { Posts } from "./posts.tsx";
 import { Post } from "./post.tsx";
 import { AppState } from "./state.ts";
+import { Capital } from "./capital.tsx";
 import { Dev } from "./dev.tsx";
 
 export const Layout = (props: AppState) => {
@@ -18,7 +19,7 @@ export const Layout = (props: AppState) => {
     } else if (props.post) {
       return <Post post={props.post} />;
     } else if (props.capital) {
-      return <span>Coming Soon</span>;
+      return <Capital />;
     } else if (props.dev) {
       return <Dev />;
     } else return <span>404 - not found :(</span>;
