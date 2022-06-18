@@ -20,13 +20,54 @@ export const Layout = (props: AppState) => {
     </span>
   );
 
+  const renderHeader = () => (
+    <div class={tw`flex items-center justify-between`}>
+      <a
+        class={tw
+          `flex items-center no-underline hover:no-underline font-bold text-2xl`}
+        href="/"
+      >
+        <img
+          src="/future-driven-logo-v.png"
+          alt="Future Driven"
+          style="width: 183px; margin-right: -3px;"
+        />
+        {renderTLD()}
+      </a>
+    </div>
+  );
+
+  const renderFooter = () => (
+    <div
+      class={tw`pt-16 pb-6 text-xs text-gray-500 `}
+    >
+      <p>
+        <a
+          class={tw`no-underline hover:underline`}
+          href="https://futuredriven.dev"
+        >
+          &copy; Future Driven 2022
+        </a>{" "}
+        — Made in Rio with {props.dev || props.blog ? "💚" : "💙"}
+      </p>
+    </div>
+  );
+
+  if (props.works || props.capital) {
+    return (
+      <div>
+        {renderHeader()}
+        <div innerHTML={{ __dangerousHtml: props.html }}></div>
+        {renderFooter()}
+      </div>
+    );
+  }
+
   const renderPage = () => {
     if (props.posts) {
       return <Posts posts={props.posts} />;
     } else if (props.post) {
       return <Post post={props.post} />;
-    } else if (props.capital || props.works) {
-      return <div innerHTML={{ __dangerousHtml: props.html }}></div>;
     } else if (props.dev) {
       return <Dev />;
     } else return <span>404 - not found :(</span>;
@@ -34,39 +75,14 @@ export const Layout = (props: AppState) => {
 
   return (
     <div class={tw`container mx-auto md:w-4/5 `}>
-      <div class={tw`flex items-center justify-between`}>
-        <a
-          class={tw
-            `flex items-center no-underline hover:no-underline font-bold text-2xl`}
-          href="/"
-        >
-          <img
-            src="/future-driven-logo-v.png"
-            alt="Future Driven"
-            style="width: 183px; margin-right: -3px;"
-          />
-          {renderTLD()}
-        </a>
-      </div>
+      {renderHeader()}
       <div class={tw`container pt-6 lg:pt-12 lg:max-w-2xl`}>
         <div
           class={tw`flex flex-col justify-center items-start overflow-y-hidden`}
         >
           {renderPage()}
         </div>
-        <div
-          class={tw`pt-16 pb-6 text-xs text-gray-500 `}
-        >
-          <p>
-            <a
-              class={tw`no-underline hover:underline`}
-              href="https://futuredriven.dev"
-            >
-              &copy; Future Driven 2022
-            </a>{" "}
-            — Made in Rio with {props.dev || props.blog ? "💚" : "💙"}
-          </p>
-        </div>
+        {renderFooter()}
       </div>
     </div>
   );
