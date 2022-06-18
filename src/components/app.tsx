@@ -18,9 +18,11 @@ setup({ sheet, preflight: true });
 
 function getTitle(state: AppState) {
   if (state.capital) {
-    return "Future Driven Capital";
+    return "Future Driven Capital — We invest in a future worth building.";
+  } else if (state.works) {
+    return "Future Driven Works - Complete conversations, extraordinary results.";
   } else if (state.blog) {
-    return "Future Driven Blog";
+    return "Future Driven Blog — Future-based language transforms reality.";
   } else if (state.dev) {
     return "Future Driven Dev - Guilherme Rodrigues' homepage";
   } else {
@@ -30,11 +32,15 @@ function getTitle(state: AppState) {
 
 function getDescription(state: AppState) {
   if (state.capital) {
-    return "Investing in a future worth building.";
+    return "We find, foster and fund leaders that deliver extraordinary results.";
+  } else if (state.works) {
+    return "Leaders create the future. We help people discover their own leadership.";
   } else if (state.blog) {
     return "Communication, culture and code — from the future. A blog by Guilherme Rodrigues.";
   } else if (state.dev) {
     return "Guilherme Rodrigues is a software developer and investor based in Rio de Janeiro, Brasil.";
+  } else {
+    return "";
   }
 }
 
