@@ -25,7 +25,7 @@ export const Layout = (props: AppState) => {
       return <Posts posts={props.posts} />;
     } else if (props.post) {
       return <Post post={props.post} />;
-    } else if (props.capital) {
+    } else if (props.capital || props.works) {
       return <div innerHTML={{ __dangerousHtml: props.html }}></div>;
     } else if (props.dev) {
       return <Dev />;
