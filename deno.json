@@ -3,6 +3,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "https://esm.sh/nano-jsx@v0.0.29/lib",
     "lib": ["dom", "dom.asynciterable", "dom.iterable", "deno.ns", "esnext", "deno.unstable"]
+  },
+  "tasks": {
+    "dev": "deno run -A --unstable --no-check --watch src/server.ts"
   }
 }
   

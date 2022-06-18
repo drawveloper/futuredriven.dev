@@ -44,6 +44,7 @@ export function render(state: AppState) {
   const bodyClass = tw`m-10 md:m-16 min-h-full`;
   const ssr = renderSSR(
     <Layout
+      html={state.html}
       post={state.post!}
       posts={state.posts!}
       blog={state.blog}

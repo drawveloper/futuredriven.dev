@@ -18,7 +18,7 @@ export const Layout = (props: AppState) => {
     } else if (props.post) {
       return <Post post={props.post} />;
     } else if (props.capital) {
-      return <span>Coming Soon</span>;
+      return <div innerHTML={{ __dangerousHtml: props.html }}></div>;
     } else if (props.dev) {
       return <Dev />;
     } else return <span>404 - not found :(</span>;

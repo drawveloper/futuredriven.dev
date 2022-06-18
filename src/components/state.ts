@@ -1,9 +1,10 @@
-import { PostState, PostsState } from "../posts.ts";
+import { PostsState, PostState } from "../posts.ts";
 
 export type AppState = {
-    blog: boolean
-    capital: boolean
-    dev: boolean
-    posts?: PostsState
-    post?: PostState
-  }
+  blog: boolean;
+  capital: boolean;
+  dev: boolean;
+  posts?: PostsState;
+  post?: PostState;
+  html?: string;
+};
