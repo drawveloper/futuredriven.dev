@@ -50,6 +50,7 @@ export function render(state: AppState) {
       blog={state.blog}
       capital={state.capital}
       dev={state.dev}
+      works={state.works}
     />,
   );
   const { body, head, footer } = Helmet.SSR(ssr);

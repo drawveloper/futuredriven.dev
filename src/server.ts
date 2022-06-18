@@ -27,6 +27,7 @@ const getState = (hostname: string, pathname: string) => ({
   blog: hostname.includes("futuredriven.blog"),
   capital: hostname.includes("futuredriven.capital"),
   dev: hostname.includes("futuredriven.dev"),
+  works: hostname.includes("futuredriven.works"),
 });
 
 app.use(serverTimingMiddleware);
@@ -118,23 +119,24 @@ router.get("/", async (context) => {
 
   const state: AppState = getState(hostname, pathname);
 
-  if (state.blog) {
-    start("fetch");
-    const posts = await getPosts();
-    end("fetch");
-
-    state.posts = posts;
-  }
-
   // Get content from builder IO
-  if (state.capital) {
+  if (state.capital || state.works) {
+    const path = state.capital ? "/capital" : "/works";
     const qwikUrl = new URL("https://cdn.builder.io/api/v1/qwik/page");
     qwikUrl.searchParams.set("apiKey", builderApiKey);
-    qwikUrl.searchParams.set("userAttributes.urlPath", "/capital");
-
+    qwikUrl.searchParams.set("userAttributes.urlPath", path);
+    start("builder");
     const qwikResponse = await fetch(String(qwikUrl));
+    end("builder");
+
     const { html } = await qwikResponse.json();
     state.html = html;
+  } else if (state.blog) {
+    start("notion");
+    const posts = await getPosts();
+    end("notion");
+
+    state.posts = posts;
   }
 
   start("render");
@@ -154,9 +156,9 @@ router.get("/p/:id", async (context) => {
 
   if (state.blog) {
     const cleanId = context.params?.id.split("-").pop() as string;
-    start("fetch");
+    start("notion");
     const { title, content, published } = await getPostById(cleanId);
-    end("fetch");
+    end("notion");
 
     state.post = {
       title,

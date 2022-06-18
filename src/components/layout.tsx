@@ -8,7 +8,15 @@ import { Dev } from "./dev.tsx";
 export const Layout = (props: AppState) => {
   const renderTLD = () => (
     <span class={tw`pl-1 text-black font-light`}>
-      {props.blog ? "Blog" : props.capital ? "Capital" : props.dev ? "Dev" : ""}
+      {props.blog
+        ? "Blog"
+        : props.capital
+        ? "Capital"
+        : props.dev
+        ? "Dev"
+        : props.works
+        ? "Works"
+        : ""}
     </span>
   );
 
